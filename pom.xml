@@ -7,16 +7,16 @@
     <artifactId>s2-portlet-project</artifactId>
     <packaging>pom</packaging>
     <name>S2Portlet</name>
-    <version>1.0.0-SNAPSHOT</version>
+    <version>1.0.0</version>
     <description>Utility to use Seasar2 on a portlet environment</description>
     <url>http://s2portlet.sandbox.seasar.org/</url>
     <!--
-    <issueManagement>
+        <issueManagement>
         <system>sourceforge.jp</system>
         <url>
-            <![CDATA[http://sourceforge.jp/tracker/?atid=6582&group_id=689&func=browse]]>
+        <![CDATA[http://sourceforge.jp/tracker/?atid=6582&group_id=689&func=browse]]>
         </url>
-    </issueManagement>
+        </issueManagement>
     -->
     <inceptionYear>2004</inceptionYear>
     <mailingLists>
@@ -29,9 +29,7 @@
                 https://www.seasar.org/mailman/listinfo/seasar-user
             </unsubscribe>
             <post>seasar-user@ml.seasar.org</post>
-            <archive>
-                http://ml.seasar.org/archives/seasar-user/
-            </archive>
+            <archive>http://ml.seasar.org/archives/seasar-user/</archive>
         </mailingList>
         <mailingList>
             <name>Seasar-dev</name>
@@ -42,9 +40,7 @@
                 https://www.seasar.org/mailman/listinfo/seasar-dev
             </unsubscribe>
             <post>seasar-dev@ml.seasar.org</post>
-            <archive>
-                http://ml.seasar.org/archives/seasar-dev/
-            </archive>
+            <archive>http://ml.seasar.org/archives/seasar-dev/</archive>
         </mailingList>
         <mailingList>
             <name>Seasar-user-en</name>
@@ -150,7 +146,14 @@
         <dependency>
             <groupId>org.seasar.container</groupId>
             <artifactId>s2-framework</artifactId>
-            <version>2.4.0-SNAPSHOT</version>
+            <version>2.4.0-beta-1</version>
+            <type>jar</type>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.seasar.hibernate</groupId>
+            <artifactId>s2-hibernate</artifactId>
+            <version>1.1.2</version>
             <type>jar</type>
             <scope>provided</scope>
         </dependency>
@@ -190,13 +193,20 @@
             <type>jar</type>
             <scope>provided</scope>
         </dependency>
+        <dependency>
+            <groupId>hibernate</groupId>
+            <artifactId>hibernate</artifactId>
+            <version>3.1.2</version>
+            <type>jar</type>
+            <scope>provided</scope>
+        </dependency>
     </dependencies>
     <distributionManagement>
         <repository>
             <uniqueVersion>false</uniqueVersion>
             <id>maven.seasar.org</id>
             <name>The Seasar Foundation Maven2 Repository</name>
-            <url>scp://www.seasar.org/home/groups/s2container/maven/maven2</url>
+            <url>scp://www.seasar.org/home/groups/s2portlet/maven/maven2</url>
         </repository>
     </distributionManagement>
 </project>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE components PUBLIC "-//SEASAR//DTD S2Container//EN"
+"http://www.seasar.org/dtd/components.dtd">
+<components>
+    <include path="j2ee.dicon" />
+    <component class="org.seasar.hibernate3.impl.S2SessionFactoryImpl" />
+
+    <component
+        class="org.seasar.portlet.hibernate3.filter.PortletFilterChainTxImpl">
+        <!--        
+            <property name="requestAttributeName">"DBSession"</property>
+        -->
+        <aspect>j2ee.requiredTx</aspect>
+    </component>
+</components>
