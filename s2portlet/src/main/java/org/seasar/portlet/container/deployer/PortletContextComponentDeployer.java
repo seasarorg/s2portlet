@@ -56,7 +56,7 @@ public class PortletContextComponentDeployer extends AbstractComponentDeployer
         }
         if (portletContext == null)
         {
-            throw new EmptyRuntimeException("servletContext");
+            throw new EmptyRuntimeException("portletContext");
         }
         String componentName = getComponentName();
         Object component = null;
