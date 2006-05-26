@@ -74,12 +74,12 @@
     </licenses>
     <scm>
         <connection>
-            scm:svn:https://www.seasar.org/svn/s2portlet/trunk/s2portlet/
+            scm:svn:https://www.seasar.org/svn/sandbox/s2portlet/trunk/s2portlet/
         </connection>
         <developerConnection>
-            scm:svn:https://www.seasar.org/svn/s2portlet/trunk/s2portlet/
+            scm:svn:https://www.seasar.org/svn/sandbox/s2portlet/trunk/s2portlet/
         </developerConnection>
-        <url>http://www.seasar.org/websvn/listing.php?repname=s2portlet</url>
+        <url>http://s2portlet.sandbox.seasar.org/</url>
     </scm>
     <organization>
         <name>The Seasar Foundation</name>
