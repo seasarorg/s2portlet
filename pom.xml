@@ -79,7 +79,7 @@
         <developerConnection>
             scm:svn:https://www.seasar.org/svn/sandbox/s2portlet/trunk/s2portlet/
         </developerConnection>
-        <url>http://s2portlet.sandbox.seasar.org/</url>
+        <url>http://www.seasar.org/websvn/listing.php?repname=sandbox.s2portlet</url>
     </scm>
     <organization>
         <name>The Seasar Foundation</name>
