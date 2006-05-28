@@ -134,6 +134,7 @@
     </build>
     <modules>
         <module>s2portlet</module>
+        <module>s2portlet-extension</module>
     </modules>
     <repositories>
         <repository>

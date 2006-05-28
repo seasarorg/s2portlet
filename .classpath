@@ -14,5 +14,6 @@
 	<classpathentry exported="true" kind="lib" path="lib/portals-bridges-portletfilter-1.0.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/s2-hibernate-1.1.2.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/hibernate-3.1.2.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/tomahawk-1.1.1.jar"/>
 	<classpathentry kind="output" path="s2portlet/target/classes"/>
 </classpath>
