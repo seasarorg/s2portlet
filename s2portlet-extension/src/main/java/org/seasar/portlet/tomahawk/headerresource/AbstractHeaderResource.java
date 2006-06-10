@@ -13,32 +13,39 @@
  * either express or implied. See the License for the specific language
  * governing permissions and limitations under the License.
  */
-package org.seasar.portlet.container.impl;
+package org.seasar.portlet.tomahawk.headerresource;
 
+import javax.portlet.PortletContext;
 import javax.portlet.PortletRequest;
-
-import org.seasar.framework.container.ContainerConstants;
-import org.seasar.framework.container.impl.SimpleComponentDef;
+import javax.portlet.PortletResponse;
 
 /**
- * This class is SimpleComponentDef implementation for PortletRequest.
+ * This class has basic methods for HeaderResource.
  * 
  * @author <a href="mailto:shinsuke@yahoo.co.jp">Shinsuke Sugaya</a>
- * 
  */
-public class PortletRequestComponentDef extends SimpleComponentDef
+public abstract class AbstractHeaderResource implements HeaderResource
 {
 
-    public PortletRequestComponentDef()
+    private PortletContext portletContext;
+
+    /**
+     * @return Returns the portletContext.
+     */
+    public PortletContext getPortletContext()
     {
-        super(PortletRequest.class, ContainerConstants.REQUEST_NAME);
+        return portletContext;
     }
 
     /**
-     * @see org.seasar.framework.container.ComponentDef#getComponent()
+     * @param portletContext The portletContext to set.
      */
-    public Object getComponent()
+    public void setPortletContext(PortletContext portletContext)
     {
-        return getContainer().getRoot().getExternalContext().getRequest();
+        this.portletContext = portletContext;
     }
+
+    public abstract void init();
+
+    public abstract void addHeaderResources(PortletRequest request, PortletResponse response, String elements);
 }

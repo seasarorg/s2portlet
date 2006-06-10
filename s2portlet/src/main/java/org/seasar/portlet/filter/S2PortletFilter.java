@@ -32,12 +32,12 @@ import org.apache.portals.bridges.portletfilter.PortletFilterConfig;
 import org.seasar.framework.container.ExternalContext;
 import org.seasar.framework.container.S2Container;
 import org.seasar.framework.container.deployer.ComponentDeployerFactory;
+import org.seasar.framework.container.deployer.PortletComponentDeployerProvider;
 import org.seasar.framework.container.factory.SingletonS2ContainerFactory;
+import org.seasar.framework.container.impl.portlet.PortletExternalContext;
+import org.seasar.framework.container.impl.portlet.PortletExternalContextComponentDefRegister;
 import org.seasar.framework.exception.EmptyRuntimeException;
 import org.seasar.framework.util.StringUtil;
-import org.seasar.portlet.container.deployer.PortletComponentDeployerProvider;
-import org.seasar.portlet.container.impl.PortletExternalContext;
-import org.seasar.portlet.container.impl.PortletExternalContextComponentDefRegister;
 
 /**
  * This is a PortletFilter implementation for Seasar2.

@@ -13,33 +13,34 @@
  * either express or implied. See the License for the specific language
  * governing permissions and limitations under the License.
  */
-package org.seasar.portlet.container.impl;
+package org.seasar.portlet.tomahawk.headerresource;
 
 import javax.portlet.PortletContext;
-
-import org.seasar.framework.container.ContainerConstants;
-import org.seasar.framework.container.impl.SimpleComponentDef;
+import javax.portlet.PortletRequest;
+import javax.portlet.PortletResponse;
 
 /**
- * This class is SimpleComponentDef implementation for PortletContext.
- * environment.
+ * HeaderResource manages header tags, such as &lt;script&gt; and &lt;link&gt;, on the portal server.
  * 
  * @author <a href="mailto:shinsuke@yahoo.co.jp">Shinsuke Sugaya</a>
- * 
  */
-public class PortletContextComponentDef extends SimpleComponentDef
+public interface HeaderResource
 {
-
-    public PortletContextComponentDef()
-    {
-        super(PortletContext.class, ContainerConstants.SERVLET_CONTEXT_NAME);
-    }
+    /**
+     * Initialize this instance.
+     */
+    public void init();
 
     /**
-     * @see org.seasar.framework.container.ComponentDef#getComponent()
+     * Add specified tag elements to portal server.
+     * 
+     * @param request   portlet's request
+     * @param response  portlet's response
+     * @param elements  tags provided by MyFaces's AddResource
      */
-    public Object getComponent()
-    {
-        return getContainer().getRoot().getExternalContext().getApplication();
-    }
+    public void addHeaderResources(PortletRequest request, PortletResponse response, String elements);
+
+    public PortletContext getPortletContext();
+
+    public void setPortletContext(PortletContext portletContext);
 }

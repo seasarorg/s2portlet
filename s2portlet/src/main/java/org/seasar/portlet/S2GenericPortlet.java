@@ -20,9 +20,6 @@ import java.util.Enumeration;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
-
 import javax.portlet.ActionRequest;
 import javax.portlet.ActionResponse;
 import javax.portlet.GenericPortlet;
@@ -33,15 +30,17 @@ import javax.portlet.PortletException;
 import javax.portlet.RenderRequest;
 import javax.portlet.RenderResponse;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.seasar.framework.container.ExternalContext;
 import org.seasar.framework.container.S2Container;
 import org.seasar.framework.container.deployer.ComponentDeployerFactory;
+import org.seasar.framework.container.deployer.PortletComponentDeployerProvider;
 import org.seasar.framework.container.factory.SingletonS2ContainerFactory;
+import org.seasar.framework.container.impl.portlet.PortletExternalContext;
+import org.seasar.framework.container.impl.portlet.PortletExternalContextComponentDefRegister;
 import org.seasar.framework.exception.EmptyRuntimeException;
 import org.seasar.framework.util.StringUtil;
-import org.seasar.portlet.container.deployer.PortletComponentDeployerProvider;
-import org.seasar.portlet.container.impl.PortletExternalContext;
-import org.seasar.portlet.container.impl.PortletExternalContextComponentDefRegister;
 
 /**
  * This is a Portlet implementation for Seasar2 environment.

@@ -1,16 +1,11 @@
-<?xml version="1.0" encoding="UTF-8"?>
-
 <projectDescription>
-  <name>Global Project</name>
-  <comment>
-  </comment>
-  <projects>
-  </projects>
+  <name>s2-portlet</name>
+  <comment/>
+  <projects/>
   <buildSpec>
     <buildCommand>
       <name>org.eclipse.jdt.core.javabuilder</name>
-      <arguments>
-      </arguments>
+      <arguments/>
     </buildCommand>
   </buildSpec>
   <natures>
