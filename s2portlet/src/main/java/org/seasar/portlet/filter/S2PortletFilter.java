@@ -32,7 +32,7 @@ import org.apache.portals.bridges.portletfilter.PortletFilterConfig;
 import org.seasar.framework.container.ExternalContext;
 import org.seasar.framework.container.S2Container;
 import org.seasar.framework.container.deployer.ComponentDeployerFactory;
-import org.seasar.framework.container.deployer.PortletComponentDeployerProvider;
+import org.seasar.framework.container.deployer.ExternalComponentDeployerProvider;
 import org.seasar.framework.container.factory.SingletonS2ContainerFactory;
 import org.seasar.framework.container.impl.portlet.PortletExternalContext;
 import org.seasar.framework.container.impl.portlet.PortletExternalContextComponentDefRegister;
@@ -65,6 +65,12 @@ public class S2PortletFilter implements PortletFilter
 
         portletConfig = filterConfig.getPortletConfig();
 
+        // restart S2Container
+        if (SingletonS2ContainerFactory.getContainer() != null)
+        {
+            SingletonS2ContainerFactory.destroy();
+        }
+
         String configPath = filterConfig.getInitParameter(CONFIG_PATH_KEY);
         if (log.isDebugEnabled())
         {
@@ -78,7 +84,7 @@ public class S2PortletFilter implements PortletFilter
         if (ComponentDeployerFactory.getProvider() instanceof ComponentDeployerFactory.DefaultProvider)
         {
             ComponentDeployerFactory
-                    .setProvider(new PortletComponentDeployerProvider());
+                    .setProvider(new ExternalComponentDeployerProvider());
         }
         PortletExternalContext extCtx = new PortletExternalContext();
         extCtx.setApplication(portletConfig.getPortletContext());
