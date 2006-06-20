@@ -31,13 +31,11 @@ import org.apache.portals.bridges.portletfilter.PortletFilterChain;
 import org.apache.portals.bridges.portletfilter.PortletFilterConfig;
 import org.seasar.framework.container.ExternalContext;
 import org.seasar.framework.container.S2Container;
-import org.seasar.framework.container.deployer.ComponentDeployerFactory;
-import org.seasar.framework.container.deployer.ExternalComponentDeployerProvider;
 import org.seasar.framework.container.factory.SingletonS2ContainerFactory;
 import org.seasar.framework.container.impl.portlet.PortletExternalContext;
-import org.seasar.framework.container.impl.portlet.PortletExternalContextComponentDefRegister;
 import org.seasar.framework.exception.EmptyRuntimeException;
-import org.seasar.framework.util.StringUtil;
+import org.seasar.framework.container.impl.portlet.PortletExtendedExternalContext;
+import org.seasar.framework.container.servlet.PortletExtendedSingletonS2ContainerInitializer;
 
 /**
  * This is a PortletFilter implementation for Seasar2.
@@ -65,38 +63,39 @@ public class S2PortletFilter implements PortletFilter
 
         portletConfig = filterConfig.getPortletConfig();
 
-        // restart S2Container
-        if (SingletonS2ContainerFactory.getContainer() != null)
+        if (SingletonS2ContainerFactory.getContainer() == null)
         {
-            SingletonS2ContainerFactory.destroy();
+            initializeContainer(filterConfig);
         }
-
-        String configPath = filterConfig.getInitParameter(CONFIG_PATH_KEY);
-        if (log.isDebugEnabled())
+        else
         {
-            log.debug("init(PortletFilterConfig) -  :" + " configPath="
-                    + configPath);
+            ExternalContext externalContext = SingletonS2ContainerFactory
+                    .getContainer().getExternalContext();
+            if (externalContext instanceof PortletExtendedExternalContext)
+            {
+                externalContext.setApplication(portletConfig
+                        .getPortletContext());
+            }
+            else
+            {
+                SingletonS2ContainerFactory.destroy();
+                initializeContainer(filterConfig);
+            }
         }
-        if (!StringUtil.isEmpty(configPath))
-        {
-            SingletonS2ContainerFactory.setConfigPath(configPath);
-        }
-        if (ComponentDeployerFactory.getProvider() instanceof ComponentDeployerFactory.DefaultProvider)
-        {
-            ComponentDeployerFactory
-                    .setProvider(new ExternalComponentDeployerProvider());
-        }
-        PortletExternalContext extCtx = new PortletExternalContext();
-        extCtx.setApplication(portletConfig.getPortletContext());
-        SingletonS2ContainerFactory.setExternalContext(extCtx);
-        SingletonS2ContainerFactory
-                .setExternalContextComponentDefRegister(new PortletExternalContextComponentDefRegister());
-        SingletonS2ContainerFactory.init();
 
         if (log.isDebugEnabled())
         {
             log.debug("init(PortletFilterConfig) - end");
         }
+    }
+
+    protected void initializeContainer(PortletFilterConfig filterConfig)
+    {
+        String configPath = filterConfig.getInitParameter(CONFIG_PATH_KEY);
+        PortletExtendedSingletonS2ContainerInitializer initializer = new PortletExtendedSingletonS2ContainerInitializer();
+        initializer.setConfigPath(configPath);
+        initializer.setApplication(portletConfig.getPortletContext());
+        initializer.initialize();
     }
 
     public void renderFilter(RenderRequest request, RenderResponse response,
@@ -165,7 +164,8 @@ public class S2PortletFilter implements PortletFilter
 
     public void destroy()
     {
-        SingletonS2ContainerFactory.destroy();
+        // do not destroy S2Container because S2Container is shared.
+        // SingletonS2ContainerFactory.destroy();
     }
 
 }
