@@ -7,7 +7,7 @@
     <artifactId>s2-portlet-project</artifactId>
     <packaging>pom</packaging>
     <name>S2Portlet</name>
-    <version>1.0.1-SNAPSHOT</version>
+    <version>1.0.1</version>
     <description>Utility to use Seasar2 on a portlet environment</description>
     <url>http://s2portlet.sandbox.seasar.org/</url>
     <!--
@@ -143,65 +143,6 @@
             <url>http://maven.seasar.org/maven2</url>
         </repository>
     </repositories>
-    <dependencies>
-        <dependency>
-            <groupId>org.seasar.container</groupId>
-            <artifactId>s2-framework</artifactId>
-            <version>2.4.0-beta-4-SNAPSHOT</version>
-            <type>jar</type>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.seasar.hibernate</groupId>
-            <artifactId>s2-hibernate</artifactId>
-            <version>1.1.2</version>
-            <type>jar</type>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.geronimo.specs</groupId>
-            <artifactId>geronimo-j2ee_1.4_spec</artifactId>
-            <version>1.0</version>
-            <type>jar</type>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.geronimo.specs</groupId>
-            <artifactId>geronimo-jta_1.0.1B_spec</artifactId>
-            <version>1.0</version>
-            <type>jar</type>
-            <scope>runtime</scope>
-            <optional>true</optional>
-        </dependency>
-        <dependency>
-            <groupId>log4j</groupId>
-            <artifactId>log4j</artifactId>
-            <version>1.2.13</version>
-            <type>jar</type>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>portlet-api</groupId>
-            <artifactId>portlet-api</artifactId>
-            <version>1.0</version>
-            <type>jar</type>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.portals.bridges</groupId>
-            <artifactId>portals-bridges-portletfilter</artifactId>
-            <version>1.0</version>
-            <type>jar</type>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>hibernate</groupId>
-            <artifactId>hibernate</artifactId>
-            <version>3.1.2</version>
-            <type>jar</type>
-            <scope>provided</scope>
-        </dependency>
-    </dependencies>
     <distributionManagement>
         <repository>
             <uniqueVersion>false</uniqueVersion>
