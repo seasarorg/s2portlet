@@ -34,11 +34,10 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.seasar.framework.container.ExternalContext;
 import org.seasar.framework.container.S2Container;
+import org.seasar.framework.container.external.portlet.PortletExternalContext;
 import org.seasar.framework.container.factory.SingletonS2ContainerFactory;
-import org.seasar.framework.container.impl.portlet.PortletExternalContext;
-import org.seasar.framework.exception.EmptyRuntimeException;
-import org.seasar.framework.container.impl.portlet.PortletExtendedExternalContext;
 import org.seasar.framework.container.servlet.PortletExtendedSingletonS2ContainerInitializer;
+import org.seasar.framework.exception.EmptyRuntimeException;
 
 /**
  * This is a Portlet implementation for Seasar2 environment.
@@ -106,7 +105,7 @@ public class S2GenericPortlet implements Portlet, PortletConfig
         {
             ExternalContext externalContext = SingletonS2ContainerFactory
                     .getContainer().getExternalContext();
-            if (externalContext instanceof PortletExtendedExternalContext)
+            if (externalContext instanceof PortletExternalContext)
             {
                 externalContext.setApplication(portletConfig
                         .getPortletContext());
