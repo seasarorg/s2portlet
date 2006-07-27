@@ -10,14 +10,10 @@
     <version>1.0.2</version>
     <description>Utility to use Seasar2 on a portlet environment</description>
     <url>http://s2portlet.sandbox.seasar.org/</url>
-    <!--
-        <issueManagement>
+    <issueManagement>
         <system>sourceforge.jp</system>
-        <url>
-        <![CDATA[http://sourceforge.jp/tracker/?atid=6582&group_id=689&func=browse]]>
-        </url>
-        </issueManagement>
-    -->
+        <url><![CDATA[https://www.seasar.org/issues/browse/PORTLET]]></url>
+    </issueManagement>
     <inceptionYear>2004</inceptionYear>
     <mailingLists>
         <mailingList>
@@ -92,6 +88,8 @@
                 <plugin>
                     <artifactId>maven-compiler-plugin</artifactId>
                     <configuration>
+                        <source>1.4</source>
+                        <target>1.4</target>
                         <encoding>UTF-8</encoding>
                     </configuration>
                 </plugin>
@@ -116,20 +114,20 @@
                     </execution>
                 </executions>
             </plugin>
-            <!--
-                <plugin>
+            <plugin>
                 <artifactId>maven-javadoc-plugin</artifactId>
-                <executions>
-                <execution>
-                <id>javadoc-jar</id>
-                <phase>package</phase>
-                <goals>
-                <goal>jar</goal>
-                </goals>
-                </execution>
-                </executions>
-                </plugin>
-            -->
+                <configuration>
+                    <source>1.4</source>
+                    <encoding>UTF-8</encoding>
+                    <docencoding>UTF-8</docencoding>
+                    <charset>UTF-8</charset>
+                    <links>
+                        <link>http://java.sun.com/j2se/1.5.0/ja/docs/ja/api/</link>
+                        <link>http://java.sun.com/j2ee/1.4/docs/api/</link>
+                        <link>http://aopalliance.sourceforge.net/doc/</link>
+                    </links>
+                </configuration>
+            </plugin>
         </plugins>
     </build>
     <modules>
@@ -150,5 +148,11 @@
             <name>The Seasar Foundation Maven2 Repository</name>
             <url>scp://www.seasar.org/home/groups/sandbox/s2portlet/maven/maven2</url>
         </repository>
+        <snapshotRepository>
+            <uniqueVersion>false</uniqueVersion>
+            <id>maven.seasar.org</id>
+            <name>The Seasar Foundation Maven2 Repository</name>
+            <url>scp://www.seasar.org/home/groups/sandbox/s2portlet/maven/maven2</url>
+        </snapshotRepository>
     </distributionManagement>
 </project>
