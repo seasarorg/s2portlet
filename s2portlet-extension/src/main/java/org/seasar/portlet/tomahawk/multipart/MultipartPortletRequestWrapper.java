@@ -43,6 +43,7 @@ import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.portlet.PortletFileUpload;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.apache.myfaces.webapp.filter.MultipartRequestWrapper;
 
 /**
  * This class handles multipart/form-date request for Portlet. It will be called if the request is multipart/form-data.
@@ -50,9 +51,11 @@ import org.apache.commons.logging.LogFactory;
  * @author <a href="mailto:shinsuke@yahoo.co.jp">Shinsuke Sugaya</a>
  * @author Sylvain Vieujot
  */
-public class MultipartPortletRequestWrapper implements ActionRequest, MultipartRequest
+public class MultipartPortletRequestWrapper implements ActionRequest,
+        MultipartRequest
 {
-    private static Log log = LogFactory.getLog(MultipartPortletRequestWrapper.class);
+    private static Log log = LogFactory
+            .getLog(MultipartPortletRequestWrapper.class);
 
     ActionRequest request = null;
 
@@ -68,7 +71,8 @@ public class MultipartPortletRequestWrapper implements ActionRequest, MultipartR
 
     String repositoryPath;
 
-    public MultipartPortletRequestWrapper(ActionRequest request, int maxSize, int thresholdSize, String repositoryPath)
+    public MultipartPortletRequestWrapper(ActionRequest request, int maxSize,
+            int thresholdSize, String repositoryPath)
     {
         this.request = request;
         this.maxSize = maxSize;
@@ -103,7 +107,10 @@ public class MultipartPortletRequestWrapper implements ActionRequest, MultipartR
             // TODO: find a way to notify the user about the fact that the uploaded file exceeded size limit
 
             if (log.isInfoEnabled())
-                log.info("user tried to upload a file that exceeded file-size limitations.", e);
+                log
+                        .info(
+                                "user tried to upload a file that exceeded file-size limitations.",
+                                e);
 
             requestParameters = Collections.EMPTY_LIST;
 
@@ -159,7 +166,8 @@ public class MultipartPortletRequestWrapper implements ActionRequest, MultipartR
         }
 
         // Add the query string paramters
-        for (Iterator it = request.getParameterMap().entrySet().iterator(); it.hasNext();)
+        for (Iterator it = request.getParameterMap().entrySet().iterator(); it
+                .hasNext();)
         {
             Map.Entry entry = (Map.Entry) it.next();
             String[] valuesArray = (String[]) entry.getValue();
@@ -237,6 +245,9 @@ public class MultipartPortletRequestWrapper implements ActionRequest, MultipartR
      */
     public Map getFileItems()
     {
+        if (fileItems == null)
+            parseRequest();
+
         return fileItems;
     }
 
@@ -247,6 +258,10 @@ public class MultipartPortletRequestWrapper implements ActionRequest, MultipartR
      */
     public Object getAttribute(String arg0)
     {
+        if (arg0.equals(MultipartRequestWrapper.UPLOADED_FILES_ATTRIBUTE))
+        {
+            return getFileItems();
+        }
         return request.getAttribute(arg0);
     }
 
@@ -585,7 +600,8 @@ public class MultipartPortletRequestWrapper implements ActionRequest, MultipartR
      * 
      * @see javax.portlet.ActionRequest#getReader()
      */
-    public BufferedReader getReader() throws UnsupportedEncodingException, IOException
+    public BufferedReader getReader() throws UnsupportedEncodingException,
+            IOException
     {
         return request.getReader();
     }
@@ -595,7 +611,8 @@ public class MultipartPortletRequestWrapper implements ActionRequest, MultipartR
      * 
      * @see javax.portlet.ActionRequest#setCharacterEncoding(java.lang.String)
      */
-    public void setCharacterEncoding(String arg0) throws UnsupportedEncodingException
+    public void setCharacterEncoding(String arg0)
+            throws UnsupportedEncodingException
     {
         request.setCharacterEncoding(arg0);
     }

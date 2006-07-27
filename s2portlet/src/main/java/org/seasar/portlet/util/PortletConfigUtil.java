@@ -21,8 +21,8 @@ import javax.portlet.PortletContext;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.seasar.framework.container.S2Container;
+import org.seasar.framework.container.external.portlet.PortletExternalContext;
 import org.seasar.framework.container.factory.SingletonS2ContainerFactory;
-import org.seasar.framework.container.impl.portlet.PortletExternalContext;
 
 /**
  * This class is a utility class to use PortletConfig on Seasar2 environment.
