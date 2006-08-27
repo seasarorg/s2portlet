@@ -133,6 +133,7 @@
     <modules>
         <module>s2portlet</module>
         <module>s2portlet-extension</module>
+        <module>s2portlet-hibernate</module>
     </modules>
     <repositories>
         <repository>
