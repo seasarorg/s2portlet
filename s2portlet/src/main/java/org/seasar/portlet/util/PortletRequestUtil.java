@@ -36,45 +36,41 @@ import org.seasar.framework.container.factory.SingletonS2ContainerFactory;
  * @author <a href="mailto:shinsuke@yahoo.co.jp">Shinsuke Sugaya</a>
  * 
  */
-public class PortletRequestUtil
-{
-    public static PortletRequest getPortletRequest()
-    {
+public class PortletRequestUtil {
+    public static PortletRequest getPortletRequest() {
         S2Container container = SingletonS2ContainerFactory.getContainer();
-        if (container == null)
-        {
+        if (container == null) {
             throw new IllegalStateException("S2Container is null.");
         }
 
-        if (container.getExternalContext().getRequest() instanceof PortletRequest)
-        {
+        if (container.getExternalContext().getRequest() instanceof PortletRequest) {
             return (PortletRequest) container.getExternalContext().getRequest();
         }
         return null;
     }
 
-    /* (non-Javadoc)
+    /*
+     * (non-Javadoc)
+     * 
      * @see javax.portlet.PortletRequest#getAttribute(java.lang.String)
      */
-    public static Object getAttribute(String arg0)
-    {
+    public static Object getAttribute(String arg0) {
         PortletRequest portletRequest = getPortletRequest();
-        if (portletRequest == null)
-        {
+        if (portletRequest == null) {
             throw new IllegalStateException(
                     "The request is not PortletRequest.");
         }
         return portletRequest.getAttribute(arg0);
     }
 
-    /* (non-Javadoc)
+    /*
+     * (non-Javadoc)
+     * 
      * @see javax.portlet.PortletRequest#getAttributeNames()
      */
-    public static Enumeration getAttributeNames()
-    {
+    public static Enumeration getAttributeNames() {
         PortletRequest portletRequest = getPortletRequest();
-        if (portletRequest == null)
-        {
+        if (portletRequest == null) {
             throw new IllegalStateException(
                     "The request is not PortletRequest.");
         }
@@ -82,14 +78,14 @@ public class PortletRequestUtil
         return portletRequest.getAttributeNames();
     }
 
-    /* (non-Javadoc)
+    /*
+     * (non-Javadoc)
+     * 
      * @see javax.portlet.PortletRequest#getAuthType()
      */
-    public static String getAuthType()
-    {
+    public static String getAuthType() {
         PortletRequest portletRequest = getPortletRequest();
-        if (portletRequest == null)
-        {
+        if (portletRequest == null) {
             throw new IllegalStateException(
                     "The request is not PortletRequest.");
         }
@@ -97,14 +93,14 @@ public class PortletRequestUtil
         return portletRequest.getAuthType();
     }
 
-    /* (non-Javadoc)
+    /*
+     * (non-Javadoc)
+     * 
      * @see javax.portlet.PortletRequest#getContextPath()
      */
-    public static String getContextPath()
-    {
+    public static String getContextPath() {
         PortletRequest portletRequest = getPortletRequest();
-        if (portletRequest == null)
-        {
+        if (portletRequest == null) {
             throw new IllegalStateException(
                     "The request is not PortletRequest.");
         }
@@ -112,14 +108,14 @@ public class PortletRequestUtil
         return portletRequest.getContextPath();
     }
 
-    /* (non-Javadoc)
+    /*
+     * (non-Javadoc)
+     * 
      * @see javax.portlet.PortletRequest#getLocale()
      */
-    public static Locale getLocale()
-    {
+    public static Locale getLocale() {
         PortletRequest portletRequest = getPortletRequest();
-        if (portletRequest == null)
-        {
+        if (portletRequest == null) {
             throw new IllegalStateException(
                     "The request is not PortletRequest.");
         }
@@ -127,14 +123,14 @@ public class PortletRequestUtil
         return portletRequest.getLocale();
     }
 
-    /* (non-Javadoc)
+    /*
+     * (non-Javadoc)
+     * 
      * @see javax.portlet.PortletRequest#getLocales()
      */
-    public static Enumeration getLocales()
-    {
+    public static Enumeration getLocales() {
         PortletRequest portletRequest = getPortletRequest();
-        if (portletRequest == null)
-        {
+        if (portletRequest == null) {
             throw new IllegalStateException(
                     "The request is not PortletRequest.");
         }
@@ -142,14 +138,14 @@ public class PortletRequestUtil
         return portletRequest.getLocales();
     }
 
-    /* (non-Javadoc)
+    /*
+     * (non-Javadoc)
+     * 
      * @see javax.portlet.PortletRequest#getParameter(java.lang.String)
      */
-    public static String getParameter(String arg0)
-    {
+    public static String getParameter(String arg0) {
         PortletRequest portletRequest = getPortletRequest();
-        if (portletRequest == null)
-        {
+        if (portletRequest == null) {
             throw new IllegalStateException(
                     "The request is not PortletRequest.");
         }
@@ -157,14 +153,14 @@ public class PortletRequestUtil
         return portletRequest.getParameter(arg0);
     }
 
-    /* (non-Javadoc)
+    /*
+     * (non-Javadoc)
+     * 
      * @see javax.portlet.PortletRequest#getParameterMap()
      */
-    public static Map getParameterMap()
-    {
+    public static Map getParameterMap() {
         PortletRequest portletRequest = getPortletRequest();
-        if (portletRequest == null)
-        {
+        if (portletRequest == null) {
             throw new IllegalStateException(
                     "The request is not PortletRequest.");
         }
@@ -172,14 +168,14 @@ public class PortletRequestUtil
         return portletRequest.getParameterMap();
     }
 
-    /* (non-Javadoc)
+    /*
+     * (non-Javadoc)
+     * 
      * @see javax.portlet.PortletRequest#getParameterNames()
      */
-    public static Enumeration getParameterNames()
-    {
+    public static Enumeration getParameterNames() {
         PortletRequest portletRequest = getPortletRequest();
-        if (portletRequest == null)
-        {
+        if (portletRequest == null) {
             throw new IllegalStateException(
                     "The request is not PortletRequest.");
         }
@@ -187,14 +183,14 @@ public class PortletRequestUtil
         return portletRequest.getParameterNames();
     }
 
-    /* (non-Javadoc)
+    /*
+     * (non-Javadoc)
+     * 
      * @see javax.portlet.PortletRequest#getParameterValues(java.lang.String)
      */
-    public static String[] getParameterValues(String arg0)
-    {
+    public static String[] getParameterValues(String arg0) {
         PortletRequest portletRequest = getPortletRequest();
-        if (portletRequest == null)
-        {
+        if (portletRequest == null) {
             throw new IllegalStateException(
                     "The request is not PortletRequest.");
         }
@@ -202,14 +198,14 @@ public class PortletRequestUtil
         return portletRequest.getParameterValues(arg0);
     }
 
-    /* (non-Javadoc)
+    /*
+     * (non-Javadoc)
+     * 
      * @see javax.portlet.PortletRequest#getPortalContext()
      */
-    public static PortalContext getPortalContext()
-    {
+    public static PortalContext getPortalContext() {
         PortletRequest portletRequest = getPortletRequest();
-        if (portletRequest == null)
-        {
+        if (portletRequest == null) {
             throw new IllegalStateException(
                     "The request is not PortletRequest.");
         }
@@ -217,14 +213,14 @@ public class PortletRequestUtil
         return portletRequest.getPortalContext();
     }
 
-    /* (non-Javadoc)
+    /*
+     * (non-Javadoc)
+     * 
      * @see javax.portlet.PortletRequest#getPortletMode()
      */
-    public static PortletMode getPortletMode()
-    {
+    public static PortletMode getPortletMode() {
         PortletRequest portletRequest = getPortletRequest();
-        if (portletRequest == null)
-        {
+        if (portletRequest == null) {
             throw new IllegalStateException(
                     "The request is not PortletRequest.");
         }
@@ -232,14 +228,14 @@ public class PortletRequestUtil
         return portletRequest.getPortletMode();
     }
 
-    /* (non-Javadoc)
+    /*
+     * (non-Javadoc)
+     * 
      * @see javax.portlet.PortletRequest#getPortletSession()
      */
-    public static PortletSession getPortletSession()
-    {
+    public static PortletSession getPortletSession() {
         PortletRequest portletRequest = getPortletRequest();
-        if (portletRequest == null)
-        {
+        if (portletRequest == null) {
             throw new IllegalStateException(
                     "The request is not PortletRequest.");
         }
@@ -247,14 +243,14 @@ public class PortletRequestUtil
         return portletRequest.getPortletSession();
     }
 
-    /* (non-Javadoc)
+    /*
+     * (non-Javadoc)
+     * 
      * @see javax.portlet.PortletRequest#getPortletSession(boolean)
      */
-    public static PortletSession getPortletSession(boolean arg0)
-    {
+    public static PortletSession getPortletSession(boolean arg0) {
         PortletRequest portletRequest = getPortletRequest();
-        if (portletRequest == null)
-        {
+        if (portletRequest == null) {
             throw new IllegalStateException(
                     "The request is not PortletRequest.");
         }
@@ -262,14 +258,14 @@ public class PortletRequestUtil
         return portletRequest.getPortletSession(arg0);
     }
 
-    /* (non-Javadoc)
+    /*
+     * (non-Javadoc)
+     * 
      * @see javax.portlet.PortletRequest#getPreferences()
      */
-    public static PortletPreferences getPreferences()
-    {
+    public static PortletPreferences getPreferences() {
         PortletRequest portletRequest = getPortletRequest();
-        if (portletRequest == null)
-        {
+        if (portletRequest == null) {
             throw new IllegalStateException(
                     "The request is not PortletRequest.");
         }
@@ -277,14 +273,14 @@ public class PortletRequestUtil
         return portletRequest.getPreferences();
     }
 
-    /* (non-Javadoc)
+    /*
+     * (non-Javadoc)
+     * 
      * @see javax.portlet.PortletRequest#getProperties(java.lang.String)
      */
-    public static Enumeration getProperties(String arg0)
-    {
+    public static Enumeration getProperties(String arg0) {
         PortletRequest portletRequest = getPortletRequest();
-        if (portletRequest == null)
-        {
+        if (portletRequest == null) {
             throw new IllegalStateException(
                     "The request is not PortletRequest.");
         }
@@ -292,14 +288,14 @@ public class PortletRequestUtil
         return portletRequest.getProperties(arg0);
     }
 
-    /* (non-Javadoc)
+    /*
+     * (non-Javadoc)
+     * 
      * @see javax.portlet.PortletRequest#getProperty(java.lang.String)
      */
-    public static String getProperty(String arg0)
-    {
+    public static String getProperty(String arg0) {
         PortletRequest portletRequest = getPortletRequest();
-        if (portletRequest == null)
-        {
+        if (portletRequest == null) {
             throw new IllegalStateException(
                     "The request is not PortletRequest.");
         }
@@ -307,14 +303,14 @@ public class PortletRequestUtil
         return portletRequest.getProperty(arg0);
     }
 
-    /* (non-Javadoc)
+    /*
+     * (non-Javadoc)
+     * 
      * @see javax.portlet.PortletRequest#getPropertyNames()
      */
-    public static Enumeration getPropertyNames()
-    {
+    public static Enumeration getPropertyNames() {
         PortletRequest portletRequest = getPortletRequest();
-        if (portletRequest == null)
-        {
+        if (portletRequest == null) {
             throw new IllegalStateException(
                     "The request is not PortletRequest.");
         }
@@ -322,14 +318,14 @@ public class PortletRequestUtil
         return portletRequest.getPropertyNames();
     }
 
-    /* (non-Javadoc)
+    /*
+     * (non-Javadoc)
+     * 
      * @see javax.portlet.PortletRequest#getRemoteUser()
      */
-    public static String getRemoteUser()
-    {
+    public static String getRemoteUser() {
         PortletRequest portletRequest = getPortletRequest();
-        if (portletRequest == null)
-        {
+        if (portletRequest == null) {
             throw new IllegalStateException(
                     "The request is not PortletRequest.");
         }
@@ -337,14 +333,14 @@ public class PortletRequestUtil
         return portletRequest.getRemoteUser();
     }
 
-    /* (non-Javadoc)
+    /*
+     * (non-Javadoc)
+     * 
      * @see javax.portlet.PortletRequest#getRequestedSessionId()
      */
-    public static String getRequestedSessionId()
-    {
+    public static String getRequestedSessionId() {
         PortletRequest portletRequest = getPortletRequest();
-        if (portletRequest == null)
-        {
+        if (portletRequest == null) {
             throw new IllegalStateException(
                     "The request is not PortletRequest.");
         }
@@ -352,14 +348,14 @@ public class PortletRequestUtil
         return portletRequest.getRequestedSessionId();
     }
 
-    /* (non-Javadoc)
+    /*
+     * (non-Javadoc)
+     * 
      * @see javax.portlet.PortletRequest#getResponseContentType()
      */
-    public static String getResponseContentType()
-    {
+    public static String getResponseContentType() {
         PortletRequest portletRequest = getPortletRequest();
-        if (portletRequest == null)
-        {
+        if (portletRequest == null) {
             throw new IllegalStateException(
                     "The request is not PortletRequest.");
         }
@@ -367,14 +363,14 @@ public class PortletRequestUtil
         return portletRequest.getResponseContentType();
     }
 
-    /* (non-Javadoc)
+    /*
+     * (non-Javadoc)
+     * 
      * @see javax.portlet.PortletRequest#getResponseContentTypes()
      */
-    public static Enumeration getResponseContentTypes()
-    {
+    public static Enumeration getResponseContentTypes() {
         PortletRequest portletRequest = getPortletRequest();
-        if (portletRequest == null)
-        {
+        if (portletRequest == null) {
             throw new IllegalStateException(
                     "The request is not PortletRequest.");
         }
@@ -382,14 +378,14 @@ public class PortletRequestUtil
         return portletRequest.getResponseContentTypes();
     }
 
-    /* (non-Javadoc)
+    /*
+     * (non-Javadoc)
+     * 
      * @see javax.portlet.PortletRequest#getScheme()
      */
-    public static String getScheme()
-    {
+    public static String getScheme() {
         PortletRequest portletRequest = getPortletRequest();
-        if (portletRequest == null)
-        {
+        if (portletRequest == null) {
             throw new IllegalStateException(
                     "The request is not PortletRequest.");
         }
@@ -397,14 +393,14 @@ public class PortletRequestUtil
         return portletRequest.getScheme();
     }
 
-    /* (non-Javadoc)
+    /*
+     * (non-Javadoc)
+     * 
      * @see javax.portlet.PortletRequest#getServerName()
      */
-    public static String getServerName()
-    {
+    public static String getServerName() {
         PortletRequest portletRequest = getPortletRequest();
-        if (portletRequest == null)
-        {
+        if (portletRequest == null) {
             throw new IllegalStateException(
                     "The request is not PortletRequest.");
         }
@@ -412,14 +408,14 @@ public class PortletRequestUtil
         return portletRequest.getServerName();
     }
 
-    /* (non-Javadoc)
+    /*
+     * (non-Javadoc)
+     * 
      * @see javax.portlet.PortletRequest#getServerPort()
      */
-    public static int getServerPort()
-    {
+    public static int getServerPort() {
         PortletRequest portletRequest = getPortletRequest();
-        if (portletRequest == null)
-        {
+        if (portletRequest == null) {
             throw new IllegalStateException(
                     "The request is not PortletRequest.");
         }
@@ -427,14 +423,14 @@ public class PortletRequestUtil
         return portletRequest.getServerPort();
     }
 
-    /* (non-Javadoc)
+    /*
+     * (non-Javadoc)
+     * 
      * @see javax.portlet.PortletRequest#getUserPrincipal()
      */
-    public static Principal getUserPrincipal()
-    {
+    public static Principal getUserPrincipal() {
         PortletRequest portletRequest = getPortletRequest();
-        if (portletRequest == null)
-        {
+        if (portletRequest == null) {
             throw new IllegalStateException(
                     "The request is not PortletRequest.");
         }
@@ -442,14 +438,14 @@ public class PortletRequestUtil
         return portletRequest.getUserPrincipal();
     }
 
-    /* (non-Javadoc)
+    /*
+     * (non-Javadoc)
+     * 
      * @see javax.portlet.PortletRequest#getWindowState()
      */
-    public static WindowState getWindowState()
-    {
+    public static WindowState getWindowState() {
         PortletRequest portletRequest = getPortletRequest();
-        if (portletRequest == null)
-        {
+        if (portletRequest == null) {
             throw new IllegalStateException(
                     "The request is not PortletRequest.");
         }
@@ -457,14 +453,14 @@ public class PortletRequestUtil
         return portletRequest.getWindowState();
     }
 
-    /* (non-Javadoc)
+    /*
+     * (non-Javadoc)
+     * 
      * @see javax.portlet.PortletRequest#isPortletModeAllowed(javax.portlet.PortletMode)
      */
-    public static boolean isPortletModeAllowed(PortletMode arg0)
-    {
+    public static boolean isPortletModeAllowed(PortletMode arg0) {
         PortletRequest portletRequest = getPortletRequest();
-        if (portletRequest == null)
-        {
+        if (portletRequest == null) {
             throw new IllegalStateException(
                     "The request is not PortletRequest.");
         }
@@ -472,14 +468,14 @@ public class PortletRequestUtil
         return portletRequest.isPortletModeAllowed(arg0);
     }
 
-    /* (non-Javadoc)
+    /*
+     * (non-Javadoc)
+     * 
      * @see javax.portlet.PortletRequest#isRequestedSessionIdValid()
      */
-    public static boolean isRequestedSessionIdValid()
-    {
+    public static boolean isRequestedSessionIdValid() {
         PortletRequest portletRequest = getPortletRequest();
-        if (portletRequest == null)
-        {
+        if (portletRequest == null) {
             throw new IllegalStateException(
                     "The request is not PortletRequest.");
         }
@@ -487,14 +483,14 @@ public class PortletRequestUtil
         return portletRequest.isRequestedSessionIdValid();
     }
 
-    /* (non-Javadoc)
+    /*
+     * (non-Javadoc)
+     * 
      * @see javax.portlet.PortletRequest#isSecure()
      */
-    public static boolean isSecure()
-    {
+    public static boolean isSecure() {
         PortletRequest portletRequest = getPortletRequest();
-        if (portletRequest == null)
-        {
+        if (portletRequest == null) {
             throw new IllegalStateException(
                     "The request is not PortletRequest.");
         }
@@ -502,14 +498,14 @@ public class PortletRequestUtil
         return portletRequest.isSecure();
     }
 
-    /* (non-Javadoc)
+    /*
+     * (non-Javadoc)
+     * 
      * @see javax.portlet.PortletRequest#isUserInRole(java.lang.String)
      */
-    public static boolean isUserInRole(String arg0)
-    {
+    public static boolean isUserInRole(String arg0) {
         PortletRequest portletRequest = getPortletRequest();
-        if (portletRequest == null)
-        {
+        if (portletRequest == null) {
             throw new IllegalStateException(
                     "The request is not PortletRequest.");
         }
@@ -517,14 +513,14 @@ public class PortletRequestUtil
         return portletRequest.isUserInRole(arg0);
     }
 
-    /* (non-Javadoc)
+    /*
+     * (non-Javadoc)
+     * 
      * @see javax.portlet.PortletRequest#isWindowStateAllowed(javax.portlet.WindowState)
      */
-    public static boolean isWindowStateAllowed(WindowState arg0)
-    {
+    public static boolean isWindowStateAllowed(WindowState arg0) {
         PortletRequest portletRequest = getPortletRequest();
-        if (portletRequest == null)
-        {
+        if (portletRequest == null) {
             throw new IllegalStateException(
                     "The request is not PortletRequest.");
         }
@@ -532,14 +528,14 @@ public class PortletRequestUtil
         return portletRequest.isWindowStateAllowed(arg0);
     }
 
-    /* (non-Javadoc)
+    /*
+     * (non-Javadoc)
+     * 
      * @see javax.portlet.PortletRequest#removeAttribute(java.lang.String)
      */
-    public static void removeAttribute(String arg0)
-    {
+    public static void removeAttribute(String arg0) {
         PortletRequest portletRequest = getPortletRequest();
-        if (portletRequest == null)
-        {
+        if (portletRequest == null) {
             throw new IllegalStateException(
                     "The request is not PortletRequest.");
         }
@@ -547,14 +543,15 @@ public class PortletRequestUtil
         portletRequest.removeAttribute(arg0);
     }
 
-    /* (non-Javadoc)
-     * @see javax.portlet.PortletRequest#setAttribute(java.lang.String, java.lang.Object)
+    /*
+     * (non-Javadoc)
+     * 
+     * @see javax.portlet.PortletRequest#setAttribute(java.lang.String,
+     *      java.lang.Object)
      */
-    public static void setAttribute(String arg0, Object arg1)
-    {
+    public static void setAttribute(String arg0, Object arg1) {
         PortletRequest portletRequest = getPortletRequest();
-        if (portletRequest == null)
-        {
+        if (portletRequest == null) {
             throw new IllegalStateException(
                     "The request is not PortletRequest.");
         }

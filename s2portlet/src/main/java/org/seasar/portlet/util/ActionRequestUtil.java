@@ -29,103 +29,99 @@ import javax.portlet.PortletRequest;
  * @author <a href="mailto:shinsuke@yahoo.co.jp">Shinsuke Sugaya</a>
  * 
  */
-public class ActionRequestUtil extends PortletRequestUtil
-{
-    public static ActionRequest getActionRequest()
-    {
+public class ActionRequestUtil extends PortletRequestUtil {
+    public static ActionRequest getActionRequest() {
         PortletRequest portletRequest = getPortletRequest();
-        if (portletRequest == null)
-        {
+        if (portletRequest == null) {
             throw new IllegalStateException(
                     "The request is not PortletRequest.");
         }
-        if (portletRequest instanceof ActionRequest)
-        {
+        if (portletRequest instanceof ActionRequest) {
             return (ActionRequest) portletRequest;
         }
         return null;
     }
 
-    /* (non-Javadoc)
+    /*
+     * (non-Javadoc)
+     * 
      * @see javax.portlet.ActionRequest#getCharacterEncoding()
      */
-    public static String getCharacterEncoding()
-    {
+    public static String getCharacterEncoding() {
         ActionRequest actionRequest = getActionRequest();
-        if (actionRequest == null)
-        {
+        if (actionRequest == null) {
             throw new IllegalStateException("The request is not ActionRequest.");
         }
 
         return actionRequest.getCharacterEncoding();
     }
 
-    /* (non-Javadoc)
+    /*
+     * (non-Javadoc)
+     * 
      * @see javax.portlet.ActionRequest#getContentLength()
      */
-    public static int getContentLength()
-    {
+    public static int getContentLength() {
         ActionRequest actionRequest = getActionRequest();
-        if (actionRequest == null)
-        {
+        if (actionRequest == null) {
             throw new IllegalStateException("The request is not ActionRequest.");
         }
 
         return actionRequest.getContentLength();
     }
 
-    /* (non-Javadoc)
+    /*
+     * (non-Javadoc)
+     * 
      * @see javax.portlet.ActionRequest#getContentType()
      */
-    public static String getContentType()
-    {
+    public static String getContentType() {
         ActionRequest actionRequest = getActionRequest();
-        if (actionRequest == null)
-        {
+        if (actionRequest == null) {
             throw new IllegalStateException("The request is not ActionRequest.");
         }
 
         return actionRequest.getContentType();
     }
 
-    /* (non-Javadoc)
+    /*
+     * (non-Javadoc)
+     * 
      * @see javax.portlet.ActionRequest#getPortletInputStream()
      */
-    public static InputStream getPortletInputStream() throws IOException
-    {
+    public static InputStream getPortletInputStream() throws IOException {
         ActionRequest actionRequest = getActionRequest();
-        if (actionRequest == null)
-        {
+        if (actionRequest == null) {
             throw new IllegalStateException("The request is not ActionRequest.");
         }
 
         return actionRequest.getPortletInputStream();
     }
 
-    /* (non-Javadoc)
+    /*
+     * (non-Javadoc)
+     * 
      * @see javax.portlet.ActionRequest#getReader()
      */
     public static BufferedReader getReader()
-            throws UnsupportedEncodingException, IOException
-    {
+            throws UnsupportedEncodingException, IOException {
         ActionRequest actionRequest = getActionRequest();
-        if (actionRequest == null)
-        {
+        if (actionRequest == null) {
             throw new IllegalStateException("The request is not ActionRequest.");
         }
 
         return actionRequest.getReader();
     }
 
-    /* (non-Javadoc)
+    /*
+     * (non-Javadoc)
+     * 
      * @see javax.portlet.ActionRequest#setCharacterEncoding(java.lang.String)
      */
     public static void setCharacterEncoding(String arg0)
-            throws UnsupportedEncodingException
-    {
+            throws UnsupportedEncodingException {
         ActionRequest actionRequest = getActionRequest();
-        if (actionRequest == null)
-        {
+        if (actionRequest == null) {
             throw new IllegalStateException("The request is not ActionRequest.");
         }
 

@@ -31,104 +31,102 @@ import javax.portlet.WindowStateException;
  * @author <a href="mailto:shinsuke@yahoo.co.jp">Shinsuke Sugaya</a>
  * 
  */
-public class ActionResponseUtil extends PortletResponseUtil
-{
-    public static ActionResponse getActionResponse()
-    {
+public class ActionResponseUtil extends PortletResponseUtil {
+    public static ActionResponse getActionResponse() {
         PortletResponse portletResponse = getPortletResponse();
-        if (portletResponse == null)
-        {
+        if (portletResponse == null) {
             throw new IllegalStateException(
                     "The response is not PortletResponse.");
         }
-        if (portletResponse instanceof ActionResponse)
-        {
+        if (portletResponse instanceof ActionResponse) {
             return (ActionResponse) portletResponse;
         }
 
         return null;
     }
 
-    /* (non-Javadoc)
+    /*
+     * (non-Javadoc)
+     * 
      * @see javax.portlet.ActionResponse#sendRedirect(java.lang.String)
      */
-    public static void sendRedirect(String arg0) throws IOException
-    {
+    public static void sendRedirect(String arg0) throws IOException {
         ActionResponse actionResponse = getActionResponse();
-        if (actionResponse == null)
-        {
+        if (actionResponse == null) {
             throw new IllegalStateException(
                     "The response is not ActionResponse.");
         }
         actionResponse.sendRedirect(arg0);
     }
 
-    /* (non-Javadoc)
+    /*
+     * (non-Javadoc)
+     * 
      * @see javax.portlet.ActionResponse#setPortletMode(javax.portlet.PortletMode)
      */
     public static void setPortletMode(PortletMode arg0)
-            throws PortletModeException
-    {
+            throws PortletModeException {
         ActionResponse actionResponse = getActionResponse();
-        if (actionResponse == null)
-        {
+        if (actionResponse == null) {
             throw new IllegalStateException(
                     "The response is not ActionResponse.");
         }
         actionResponse.setPortletMode(arg0);
     }
 
-    /* (non-Javadoc)
-     * @see javax.portlet.ActionResponse#setRenderParameter(java.lang.String, java.lang.String)
+    /*
+     * (non-Javadoc)
+     * 
+     * @see javax.portlet.ActionResponse#setRenderParameter(java.lang.String,
+     *      java.lang.String)
      */
-    public static void setRenderParameter(String arg0, String arg1)
-    {
+    public static void setRenderParameter(String arg0, String arg1) {
         ActionResponse actionResponse = getActionResponse();
-        if (actionResponse == null)
-        {
+        if (actionResponse == null) {
             throw new IllegalStateException(
                     "The response is not ActionResponse.");
         }
         actionResponse.setRenderParameter(arg0, arg1);
     }
 
-    /* (non-Javadoc)
-     * @see javax.portlet.ActionResponse#setRenderParameter(java.lang.String, java.lang.String[])
+    /*
+     * (non-Javadoc)
+     * 
+     * @see javax.portlet.ActionResponse#setRenderParameter(java.lang.String,
+     *      java.lang.String[])
      */
-    public static void setRenderParameter(String arg0, String[] arg1)
-    {
+    public static void setRenderParameter(String arg0, String[] arg1) {
         ActionResponse actionResponse = getActionResponse();
-        if (actionResponse == null)
-        {
+        if (actionResponse == null) {
             throw new IllegalStateException(
                     "The response is not ActionResponse.");
         }
         actionResponse.setRenderParameter(arg0, arg1);
     }
 
-    /* (non-Javadoc)
+    /*
+     * (non-Javadoc)
+     * 
      * @see javax.portlet.ActionResponse#setRenderParameters(java.util.Map)
      */
-    public static void setRenderParameters(Map arg0)
-    {
+    public static void setRenderParameters(Map arg0) {
         ActionResponse actionResponse = getActionResponse();
-        if (actionResponse == null)
-        {
+        if (actionResponse == null) {
             throw new IllegalStateException(
                     "The response is not ActionResponse.");
         }
         actionResponse.setRenderParameters(arg0);
     }
 
-    /* (non-Javadoc)
+    /*
+     * (non-Javadoc)
+     * 
      * @see javax.portlet.ActionResponse#setWindowState(javax.portlet.WindowState)
      */
     public static void setWindowState(WindowState arg0)
-            throws WindowStateException
-    {
+            throws WindowStateException {
         ActionResponse actionResponse = getActionResponse();
-        if (actionResponse == null)
-        {
+        if (actionResponse == null) {
             throw new IllegalStateException(
                     "The response is not ActionResponse.");
         }

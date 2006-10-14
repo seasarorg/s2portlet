@@ -30,8 +30,8 @@ import org.apache.portals.bridges.portletfilter.PortletFilterChain;
  * 
  * @author <a href="mailto:shinsuke@yahoo.co.jp">Shinsuke Sugaya</a>
  * 
- */public interface PortletFilterChainTx
-{
+ */
+public interface PortletFilterChainTx {
 
     public void processActionFilter(ActionRequest request,
             ActionResponse response, PortletFilterChain chain)

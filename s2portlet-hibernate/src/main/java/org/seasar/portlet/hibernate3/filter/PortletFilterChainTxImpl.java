@@ -32,54 +32,56 @@ import org.seasar.hibernate3.S2SessionFactory;
  * 
  * @author <a href="mailto:shinsuke@yahoo.co.jp">Shinsuke Sugaya</a>
  * 
- */public class PortletFilterChainTxImpl implements PortletFilterChainTx
-{
+ */
+public class PortletFilterChainTxImpl implements PortletFilterChainTx {
 
     private S2SessionFactory sessionFactory_;
 
     private String requestAttributeName_ = "S2Session";
 
-    public PortletFilterChainTxImpl(S2SessionFactory sessionFactory)
-    {
+    public PortletFilterChainTxImpl(S2SessionFactory sessionFactory) {
         sessionFactory_ = sessionFactory;
     }
 
-    public void setRequestAttributeName(String requestAttributeName)
-    {
+    public void setRequestAttributeName(String requestAttributeName) {
         requestAttributeName_ = requestAttributeName;
     }
 
-    /* (non-Javadoc)
-     * @see org.seasar.portlet.hibernate3.filter.PortletFilterChainTx#processActionFilter(javax.portlet.ActionRequest, javax.portlet.ActionResponse, org.apache.portals.bridges.portletfilter.PortletFilterChain)
+    /*
+     * (non-Javadoc)
+     * 
+     * @see org.seasar.portlet.hibernate3.filter.PortletFilterChainTx#processActionFilter(javax.portlet.ActionRequest,
+     *      javax.portlet.ActionResponse,
+     *      org.apache.portals.bridges.portletfilter.PortletFilterChain)
      */
     public void processActionFilter(ActionRequest request,
             ActionResponse response, PortletFilterChain chain)
-            throws PortletException, IOException
-    {
+            throws PortletException, IOException {
         Session session = sessionFactory_.getSession();
         request.setAttribute(requestAttributeName_, session);
 
         chain.processActionFilter(request, response);
 
-        if (session.isOpen())
-        {
+        if (session.isOpen()) {
             session.close();
         }
     }
 
-    /* (non-Javadoc)
-     * @see org.seasar.portlet.hibernate3.filter.PortletFilterChainTx#renderFilter(javax.portlet.RenderRequest, javax.portlet.RenderResponse, org.apache.portals.bridges.portletfilter.PortletFilterChain)
+    /*
+     * (non-Javadoc)
+     * 
+     * @see org.seasar.portlet.hibernate3.filter.PortletFilterChainTx#renderFilter(javax.portlet.RenderRequest,
+     *      javax.portlet.RenderResponse,
+     *      org.apache.portals.bridges.portletfilter.PortletFilterChain)
      */
     public void renderFilter(RenderRequest request, RenderResponse response,
-            PortletFilterChain chain) throws PortletException, IOException
-    {
+            PortletFilterChain chain) throws PortletException, IOException {
         Session session = sessionFactory_.getSession();
         request.setAttribute(requestAttributeName_, session);
 
         chain.renderFilter(request, response);
 
-        if (session.isOpen())
-        {
+        if (session.isOpen()) {
             session.close();
         }
     }

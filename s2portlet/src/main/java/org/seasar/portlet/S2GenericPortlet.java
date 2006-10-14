@@ -40,14 +40,13 @@ import org.seasar.framework.container.servlet.PortletExtendedSingletonS2Containe
 import org.seasar.framework.exception.EmptyRuntimeException;
 
 /**
- * This is a Portlet implementation for Seasar2 environment.
- * S2GenericPortlet uses a Portlet instance defined by *.dicon.
+ * This is a Portlet implementation for Seasar2 environment. S2GenericPortlet
+ * uses a Portlet instance defined by *.dicon.
  * 
  * @author <a href="mailto:shinsuke@yahoo.co.jp">Shinsuke Sugaya</a>
  * 
  */
-public class S2GenericPortlet implements Portlet, PortletConfig
-{
+public class S2GenericPortlet implements Portlet, PortletConfig {
     /**
      * Logger for this class
      */
@@ -61,65 +60,55 @@ public class S2GenericPortlet implements Portlet, PortletConfig
 
     private String portletName = null;
 
-    /* (non-Javadoc)
+    /*
+     * (non-Javadoc)
+     * 
      * @see javax.portlet.Portlet#destroy()
      */
-    public void destroy()
-    {
-        try
-        {
+    public void destroy() {
+        try {
             getGenericPortlet().destroy();
-        }
-        catch (PortletException e)
-        {
+        } catch (PortletException e) {
             log.error(e);
         }
         // do not destroy S2Container because S2Container is shared.
-        //SingletonS2ContainerFactory.destroy();
+        // SingletonS2ContainerFactory.destroy();
     }
 
-    /* (non-Javadoc)
+    /*
+     * (non-Javadoc)
+     * 
      * @see javax.portlet.Portlet#init(javax.portlet.PortletConfig)
      */
-    public void init(PortletConfig portletConfig) throws PortletException
-    {
+    public void init(PortletConfig portletConfig) throws PortletException {
         config = portletConfig;
 
         // restart S2Container
-        if (SingletonS2ContainerFactory.getContainer() != null)
-        {
+        if (SingletonS2ContainerFactory.getContainer() != null) {
             SingletonS2ContainerFactory.destroy();
         }
 
         portletName = portletConfig.getInitParameter(PORTLET_NAME_KEY);
-        if (portletName == null)
-        {
+        if (portletName == null) {
             portletName = PORTLET_NAME_KEY;
         }
 
-        if (SingletonS2ContainerFactory.getContainer() == null)
-        {
+        if (SingletonS2ContainerFactory.getContainer() == null) {
             initializeContainer(portletConfig);
-        }
-        else
-        {
+        } else {
             ExternalContext externalContext = SingletonS2ContainerFactory
                     .getContainer().getExternalContext();
-            if (externalContext instanceof PortletExternalContext)
-            {
+            if (externalContext instanceof PortletExternalContext) {
                 externalContext.setApplication(portletConfig
                         .getPortletContext());
-            }
-            else
-            {
+            } else {
                 SingletonS2ContainerFactory.destroy();
                 initializeContainer(portletConfig);
             }
         }
     }
 
-    protected void initializeContainer(PortletConfig portletConfig)
-    {
+    protected void initializeContainer(PortletConfig portletConfig) {
         String configPath = portletConfig.getInitParameter(CONFIG_PATH_KEY);
         PortletExtendedSingletonS2ContainerInitializer initializer = new PortletExtendedSingletonS2ContainerInitializer();
         initializer.setConfigPath(configPath);
@@ -127,23 +116,23 @@ public class S2GenericPortlet implements Portlet, PortletConfig
         initializer.initialize();
     }
 
-    /* (non-Javadoc)
-     * @see javax.portlet.Portlet#processAction(javax.portlet.ActionRequest, javax.portlet.ActionResponse)
+    /*
+     * (non-Javadoc)
+     * 
+     * @see javax.portlet.Portlet#processAction(javax.portlet.ActionRequest,
+     *      javax.portlet.ActionResponse)
      */
     public void processAction(ActionRequest request, ActionResponse response)
-            throws PortletException, IOException
-    {
+            throws PortletException, IOException {
         // set request, response, portletConfig
         S2Container container = SingletonS2ContainerFactory.getContainer();
         ExternalContext externalContext = container.getExternalContext();
-        if (externalContext == null)
-        {
+        if (externalContext == null) {
             throw new EmptyRuntimeException("externalContext");
         }
         externalContext.setRequest(request);
         externalContext.setResponse(response);
-        if (externalContext instanceof PortletExternalContext)
-        {
+        if (externalContext instanceof PortletExternalContext) {
             ((PortletExternalContext) externalContext).setConfig(config);
         }
 
@@ -152,29 +141,28 @@ public class S2GenericPortlet implements Portlet, PortletConfig
         // remove request, response, portletConfig
         externalContext.setRequest(null);
         externalContext.setResponse(null);
-        if (externalContext instanceof PortletExternalContext)
-        {
+        if (externalContext instanceof PortletExternalContext) {
             ((PortletExternalContext) externalContext).setConfig(null);
         }
     }
 
-    /* (non-Javadoc)
-     * @see javax.portlet.Portlet#render(javax.portlet.RenderRequest, javax.portlet.RenderResponse)
+    /*
+     * (non-Javadoc)
+     * 
+     * @see javax.portlet.Portlet#render(javax.portlet.RenderRequest,
+     *      javax.portlet.RenderResponse)
      */
     public void render(RenderRequest request, RenderResponse response)
-            throws PortletException, IOException
-    {
+            throws PortletException, IOException {
         // set request, response, portletConfig
         S2Container container = SingletonS2ContainerFactory.getContainer();
         ExternalContext externalContext = container.getExternalContext();
-        if (externalContext == null)
-        {
+        if (externalContext == null) {
             throw new EmptyRuntimeException("externalContext");
         }
         externalContext.setRequest(request);
         externalContext.setResponse(response);
-        if (externalContext instanceof PortletExternalContext)
-        {
+        if (externalContext instanceof PortletExternalContext) {
             ((PortletExternalContext) externalContext).setConfig(config);
         }
 
@@ -183,87 +171,76 @@ public class S2GenericPortlet implements Portlet, PortletConfig
         // remove request, response, portletConfig
         externalContext.setRequest(null);
         externalContext.setResponse(null);
-        if (externalContext instanceof PortletExternalContext)
-        {
+        if (externalContext instanceof PortletExternalContext) {
             ((PortletExternalContext) externalContext).setConfig(null);
         }
     }
 
-    /* (non-Javadoc)
+    /*
+     * (non-Javadoc)
+     * 
      * @see javax.portlet.PortletConfig#getInitParameter(java.lang.String)
      */
-    public String getInitParameter(String str)
-    {
-        try
-        {
+    public String getInitParameter(String str) {
+        try {
             return getGenericPortlet().getInitParameter(str);
-        }
-        catch (PortletException e)
-        {
+        } catch (PortletException e) {
             log.warn(e);
             return config.getInitParameter(str);
         }
     }
 
-    /* (non-Javadoc)
+    /*
+     * (non-Javadoc)
+     * 
      * @see javax.portlet.PortletConfig#getInitParameterNames()
      */
-    public Enumeration getInitParameterNames()
-    {
-        try
-        {
+    public Enumeration getInitParameterNames() {
+        try {
             return getGenericPortlet().getInitParameterNames();
-        }
-        catch (PortletException e)
-        {
+        } catch (PortletException e) {
             log.warn(e);
             return config.getInitParameterNames();
         }
     }
 
-    /* (non-Javadoc)
+    /*
+     * (non-Javadoc)
+     * 
      * @see javax.portlet.PortletConfig#getPortletContext()
      */
-    public PortletContext getPortletContext()
-    {
-        try
-        {
+    public PortletContext getPortletContext() {
+        try {
             return getGenericPortlet().getPortletContext();
-        }
-        catch (PortletException e)
-        {
+        } catch (PortletException e) {
             log.warn(e);
             return config.getPortletContext();
         }
     }
 
-    /* (non-Javadoc)
+    /*
+     * (non-Javadoc)
+     * 
      * @see javax.portlet.PortletConfig#getPortletName()
      */
-    public String getPortletName()
-    {
-        try
-        {
+    public String getPortletName() {
+        try {
             return getGenericPortlet().getPortletName();
-        }
-        catch (PortletException e)
-        {
+        } catch (PortletException e) {
             log.warn(e);
             return config.getPortletName();
         }
     }
 
-    /* (non-Javadoc)
+    /*
+     * (non-Javadoc)
+     * 
      * @see javax.portlet.PortletConfig#getResourceBundle(java.util.Locale)
      */
-    public ResourceBundle getResourceBundle(Locale locale)
-    {
-        try
-        {
+    public ResourceBundle getResourceBundle(Locale locale) {
+        try {
             return getGenericPortlet().getResourceBundle(locale);
-        }
-        catch (PortletException e)
-        {
+        } catch (PortletException e) {
             log.warn(e);
             return config.getResourceBundle(locale);
         }
@@ -273,19 +250,16 @@ public class S2GenericPortlet implements Portlet, PortletConfig
      * @return The Portlet instance defined by dicon file
      * @throws PortletException
      */
-    protected GenericPortlet getGenericPortlet() throws PortletException
-    {
+    protected GenericPortlet getGenericPortlet() throws PortletException {
         GenericPortlet portlet = (GenericPortlet) SingletonS2ContainerFactory
                 .getContainer().getComponent(portletName);
-        if (portlet == null)
-        {
+        if (portlet == null) {
             throw new PortletException("GenericPortlet is not defined in "
                     + config.getInitParameter(CONFIG_PATH_KEY) + ".");
         }
 
         // Initialize portlet instance
-        if (portlet.getPortletConfig() == null)
-        {
+        if (portlet.getPortletConfig() == null) {
             portlet.init(config);
         }
         return portlet;

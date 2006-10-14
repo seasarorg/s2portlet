@@ -24,57 +24,48 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
 /**
- * This class is a utility class to use a resource bundle defined by 
- * portlet.xml on Seasar2 environment.
+ * This class is a utility class to use a resource bundle defined by portlet.xml
+ * on Seasar2 environment.
  * 
  * @author <a href="mailto:shinsuke@yahoo.co.jp">Shinsuke Sugaya</a>
  * 
  */
-public class PortletResourceBundleUtil
-{
+public class PortletResourceBundleUtil {
     /**
      * Logger for this class
      */
     private static final Log log = LogFactory
             .getLog(PortletResourceBundleUtil.class);
 
-    public static ResourceBundle getBundle(Locale locale)
-    {
+    public static ResourceBundle getBundle(Locale locale) {
         return PortletConfigUtil.getResourceBundle(locale);
     }
 
-    public static Enumeration getKeys(Locale locale)
-    {
+    public static Enumeration getKeys(Locale locale) {
         ResourceBundle bundle = getBundle(locale);
-        if (bundle != null)
-        {
+        if (bundle != null) {
             return bundle.getKeys();
         }
         return null;
     }
 
-    public static Object getObject(Locale locale, String key)
-    {
+    public static Object getObject(Locale locale, String key) {
         ResourceBundle bundle = getBundle(locale);
-        if (bundle != null)
-        {
+        if (bundle != null) {
             return bundle.getObject(key);
         }
         return null;
     }
 
-    public static String getString(Locale locale, String key)
-    {
+    public static String getString(Locale locale, String key) {
         return (String) getObject(locale, key);
     }
 
-    public static String[] getStringArray(Locale locale, String key)
-    {
+    public static String[] getStringArray(Locale locale, String key) {
         return (String[]) getObject(locale, key);
     }
 
-    public static String getString(Locale locale, String key, Object[] params)
-    {
+    public static String getString(Locale locale, String key, Object[] params) {
         MessageFormat format = new MessageFormat(getString(locale, key), locale);
         return format.format(params);
     }

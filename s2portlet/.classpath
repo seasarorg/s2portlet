@@ -11,7 +11,7 @@
   <classpathentry kind="var" path="M2_REPO/ognl/ognl/2.6.7/ognl-2.6.7.jar"/>
   <classpathentry kind="var" path="M2_REPO/org/apache/portals/bridges/portals-bridges-portletfilter/1.0/portals-bridges-portletfilter-1.0.jar"/>
   <classpathentry kind="var" path="M2_REPO/jboss/javassist/3.0/javassist-3.0.jar"/>
+  <classpathentry kind="var" path="M2_REPO/org/seasar/container/s2-framework/2.4.0-rc-2/s2-framework-2.4.0-rc-2.jar"/>
   <classpathentry kind="var" path="M2_REPO/portlet-api/portlet-api/1.0/portlet-api-1.0.jar"/>
-  <classpathentry kind="var" path="M2_REPO/org/seasar/container/s2-framework/2.4.0-rc-1/s2-framework-2.4.0-rc-1.jar" sourcepath="M2_REPO/org/seasar/container/s2-framework/2.4.0-rc-1/s2-framework-2.4.0-rc-1-sources.jar"/>
   <classpathentry kind="var" path="M2_REPO/log4j/log4j/1.2.13/log4j-1.2.13.jar" sourcepath="M2_REPO/log4j/log4j/1.2.13/log4j-1.2.13-sources.jar"/>
 </classpath>

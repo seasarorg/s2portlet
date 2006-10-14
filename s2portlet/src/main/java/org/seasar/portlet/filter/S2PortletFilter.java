@@ -42,8 +42,7 @@ import org.seasar.framework.exception.EmptyRuntimeException;
  * @author <a href="mailto:shinsuke@yahoo.co.jp">Shinsuke Sugaya</a>
  * 
  */
-public class S2PortletFilter implements PortletFilter
-{
+public class S2PortletFilter implements PortletFilter {
     /**
      * Logger for this class
      */
@@ -53,43 +52,33 @@ public class S2PortletFilter implements PortletFilter
 
     private PortletConfig portletConfig = null;
 
-    public void init(PortletFilterConfig filterConfig) throws PortletException
-    {
-        if (log.isDebugEnabled())
-        {
+    public void init(PortletFilterConfig filterConfig) throws PortletException {
+        if (log.isDebugEnabled()) {
             log.debug("init(PortletFilterConfig) - start");
         }
 
         portletConfig = filterConfig.getPortletConfig();
 
-        if (SingletonS2ContainerFactory.getContainer() == null)
-        {
+        if (SingletonS2ContainerFactory.getContainer() == null) {
             initializeContainer(filterConfig);
-        }
-        else
-        {
+        } else {
             ExternalContext externalContext = SingletonS2ContainerFactory
                     .getContainer().getExternalContext();
-            if (externalContext instanceof PortletExternalContext)
-            {
+            if (externalContext instanceof PortletExternalContext) {
                 externalContext.setApplication(portletConfig
                         .getPortletContext());
-            }
-            else
-            {
+            } else {
                 SingletonS2ContainerFactory.destroy();
                 initializeContainer(filterConfig);
             }
         }
 
-        if (log.isDebugEnabled())
-        {
+        if (log.isDebugEnabled()) {
             log.debug("init(PortletFilterConfig) - end");
         }
     }
 
-    protected void initializeContainer(PortletFilterConfig filterConfig)
-    {
+    protected void initializeContainer(PortletFilterConfig filterConfig) {
         String configPath = filterConfig.getInitParameter(CONFIG_PATH_KEY);
         PortletExtendedSingletonS2ContainerInitializer initializer = new PortletExtendedSingletonS2ContainerInitializer();
         initializer.setConfigPath(configPath);
@@ -98,31 +87,24 @@ public class S2PortletFilter implements PortletFilter
     }
 
     public void renderFilter(RenderRequest request, RenderResponse response,
-            PortletFilterChain chain) throws PortletException, IOException
-    {
+            PortletFilterChain chain) throws PortletException, IOException {
         S2Container container = SingletonS2ContainerFactory.getContainer();
         ExternalContext externalContext = container.getExternalContext();
-        if (externalContext == null)
-        {
+        if (externalContext == null) {
             throw new EmptyRuntimeException("externalContext");
         }
         externalContext.setRequest(request);
         externalContext.setResponse(response);
-        if (externalContext instanceof PortletExternalContext)
-        {
+        if (externalContext instanceof PortletExternalContext) {
             ((PortletExternalContext) externalContext).setConfig(portletConfig);
         }
 
-        try
-        {
+        try {
             chain.renderFilter(request, response);
-        }
-        finally
-        {
+        } finally {
             externalContext.setRequest(null);
             externalContext.setResponse(null);
-            if (externalContext instanceof PortletExternalContext)
-            {
+            if (externalContext instanceof PortletExternalContext) {
                 ((PortletExternalContext) externalContext).setConfig(null);
             }
         }
@@ -130,39 +112,31 @@ public class S2PortletFilter implements PortletFilter
 
     public void processActionFilter(ActionRequest request,
             ActionResponse response, PortletFilterChain chain)
-            throws PortletException, IOException
-    {
+            throws PortletException, IOException {
         S2Container container = SingletonS2ContainerFactory.getContainer();
         ExternalContext externalContext = container.getExternalContext();
-        if (externalContext == null)
-        {
+        if (externalContext == null) {
             throw new EmptyRuntimeException("externalContext");
         }
         externalContext.setRequest(request);
         externalContext.setResponse(response);
-        if (externalContext instanceof PortletExternalContext)
-        {
+        if (externalContext instanceof PortletExternalContext) {
             ((PortletExternalContext) externalContext).setConfig(portletConfig);
         }
 
-        try
-        {
+        try {
             chain.processActionFilter(request, response);
-        }
-        finally
-        {
+        } finally {
             externalContext.setRequest(null);
             externalContext.setResponse(null);
-            if (externalContext instanceof PortletExternalContext)
-            {
+            if (externalContext instanceof PortletExternalContext) {
                 ((PortletExternalContext) externalContext).setConfig(null);
             }
         }
 
     }
 
-    public void destroy()
-    {
+    public void destroy() {
         // do not destroy S2Container because S2Container is shared.
         // SingletonS2ContainerFactory.destroy();
     }
