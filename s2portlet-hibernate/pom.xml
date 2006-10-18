@@ -5,7 +5,7 @@
     <groupId>org.seasar.portlet</groupId>
     <artifactId>s2-portlet-hibernate</artifactId>
     <packaging>jar</packaging>
-    <version>1.0.4-SNAPSHOT</version>
+    <version>1.0.4</version>
     <name>S2Portlet jar file</name>
     <url>http://s2portlet.sandbox.seasar.org/</url>
     <repositories>
@@ -73,13 +73,13 @@
             <type>jar</type>
             <scope>provided</scope>
         </dependency>
-    <dependency>
-      <groupId>org.seasar.teeda</groupId>
-      <artifactId>teeda-core</artifactId>
-      <version>1.0-rc-1</version>
-      <type>jar</type>
+        <dependency>
+            <groupId>org.seasar.teeda</groupId>
+            <artifactId>teeda-core</artifactId>
+            <version>1.0-rc-1</version>
+            <type>jar</type>
             <scope>provided</scope>
-    </dependency>
+        </dependency>
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
