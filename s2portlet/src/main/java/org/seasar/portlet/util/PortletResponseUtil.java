@@ -26,60 +26,58 @@ import org.seasar.framework.container.factory.SingletonS2ContainerFactory;
  * @author <a href="mailto:shinsuke@yahoo.co.jp">Shinsuke Sugaya</a>
  * 
  */
-public class PortletResponseUtil
-{
-    public static PortletResponse getPortletResponse()
-    {
+public class PortletResponseUtil {
+    public static PortletResponse getPortletResponse() {
         S2Container container = SingletonS2ContainerFactory.getContainer();
-        if (container == null)
-        {
+        if (container == null) {
             throw new IllegalStateException("S2Container is null.");
         }
 
-        if (container.getExternalContext().getResponse() instanceof PortletResponse)
-        {
+        if (container.getExternalContext().getResponse() instanceof PortletResponse) {
             return (PortletResponse) container.getExternalContext()
                     .getResponse();
         }
         return null;
     }
 
-    /* (non-Javadoc)
-     * @see javax.portlet.PortletResponse#addProperty(java.lang.String, java.lang.String)
+    /*
+     * (non-Javadoc)
+     * 
+     * @see javax.portlet.PortletResponse#addProperty(java.lang.String,
+     *      java.lang.String)
      */
-    public static void addProperty(String arg0, String arg1)
-    {
+    public static void addProperty(String arg0, String arg1) {
         PortletResponse portletResponse = getPortletResponse();
-        if (portletResponse == null)
-        {
+        if (portletResponse == null) {
             throw new IllegalStateException(
                     "The response is not PortletResponse.");
         }
         portletResponse.addProperty(arg0, arg1);
     }
 
-    /* (non-Javadoc)
+    /*
+     * (non-Javadoc)
+     * 
      * @see javax.portlet.PortletResponse#encodeURL(java.lang.String)
      */
-    public static String encodeURL(String arg0)
-    {
+    public static String encodeURL(String arg0) {
         PortletResponse portletResponse = getPortletResponse();
-        if (portletResponse == null)
-        {
+        if (portletResponse == null) {
             throw new IllegalStateException(
                     "The response is not PortletResponse.");
         }
         return portletResponse.encodeURL(arg0);
     }
 
-    /* (non-Javadoc)
-     * @see javax.portlet.PortletResponse#setProperty(java.lang.String, java.lang.String)
+    /*
+     * (non-Javadoc)
+     * 
+     * @see javax.portlet.PortletResponse#setProperty(java.lang.String,
+     *      java.lang.String)
      */
-    public static void setProperty(String arg0, String arg1)
-    {
+    public static void setProperty(String arg0, String arg1) {
         PortletResponse portletResponse = getPortletResponse();
-        if (portletResponse == null)
-        {
+        if (portletResponse == null) {
             throw new IllegalStateException(
                     "The response is not PortletResponse.");
         }

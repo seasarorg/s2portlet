@@ -24,18 +24,14 @@ import javax.portlet.RenderRequest;
  * @author <a href="mailto:shinsuke@yahoo.co.jp">Shinsuke Sugaya</a>
  * 
  */
-public class RenderRequestUtil extends PortletRequestUtil
-{
-    public static RenderRequest getRenderRequest()
-    {
+public class RenderRequestUtil extends PortletRequestUtil {
+    public static RenderRequest getRenderRequest() {
         PortletRequest portletRequest = getPortletRequest();
-        if (portletRequest == null)
-        {
+        if (portletRequest == null) {
             throw new IllegalStateException(
                     "The request is not PortletRequest.");
         }
-        if (portletRequest instanceof RenderRequest)
-        {
+        if (portletRequest instanceof RenderRequest) {
             return (RenderRequest) portletRequest;
         }
         return null;

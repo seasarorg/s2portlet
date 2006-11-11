@@ -30,228 +30,224 @@ import javax.portlet.RenderResponse;
  * @author <a href="mailto:shinsuke@yahoo.co.jp">Shinsuke Sugaya</a>
  * 
  */
-public class RenderResponseUtil extends PortletResponseUtil
-{
-    public static RenderResponse getRenderResponse()
-    {
+public class RenderResponseUtil extends PortletResponseUtil {
+    public static RenderResponse getRenderResponse() {
         PortletResponse portletResponse = getPortletResponse();
-        if (portletResponse == null)
-        {
+        if (portletResponse == null) {
             throw new IllegalStateException(
                     "The response is not PortletResponse.");
         }
-        if (portletResponse instanceof RenderResponse)
-        {
+        if (portletResponse instanceof RenderResponse) {
             return (RenderResponse) portletResponse;
         }
 
         return null;
     }
 
-    /* (non-Javadoc)
+    /*
+     * (non-Javadoc)
+     * 
      * @see javax.portlet.RenderResponse#createActionURL()
      */
-    public static PortletURL createActionURL()
-    {
+    public static PortletURL createActionURL() {
         RenderResponse renderResponse = getRenderResponse();
-        if (renderResponse == null)
-        {
+        if (renderResponse == null) {
             throw new IllegalStateException(
                     "The response is not RenderResponse.");
         }
         return renderResponse.createActionURL();
     }
 
-    /* (non-Javadoc)
+    /*
+     * (non-Javadoc)
+     * 
      * @see javax.portlet.RenderResponse#createRenderURL()
      */
-    public static PortletURL createRenderURL()
-    {
+    public static PortletURL createRenderURL() {
         RenderResponse renderResponse = getRenderResponse();
-        if (renderResponse == null)
-        {
+        if (renderResponse == null) {
             throw new IllegalStateException(
                     "The response is not RenderResponse.");
         }
         return renderResponse.createRenderURL();
     }
 
-    /* (non-Javadoc)
+    /*
+     * (non-Javadoc)
+     * 
      * @see javax.portlet.RenderResponse#flushBuffer()
      */
-    public static void flushBuffer() throws IOException
-    {
+    public static void flushBuffer() throws IOException {
         RenderResponse renderResponse = getRenderResponse();
-        if (renderResponse == null)
-        {
+        if (renderResponse == null) {
             throw new IllegalStateException(
                     "The response is not RenderResponse.");
         }
         renderResponse.flushBuffer();
     }
 
-    /* (non-Javadoc)
+    /*
+     * (non-Javadoc)
+     * 
      * @see javax.portlet.RenderResponse#getBufferSize()
      */
-    public static int getBufferSize()
-    {
+    public static int getBufferSize() {
         RenderResponse renderResponse = getRenderResponse();
-        if (renderResponse == null)
-        {
+        if (renderResponse == null) {
             throw new IllegalStateException(
                     "The response is not RenderResponse.");
         }
         return renderResponse.getBufferSize();
     }
 
-    /* (non-Javadoc)
+    /*
+     * (non-Javadoc)
+     * 
      * @see javax.portlet.RenderResponse#getCharacterEncoding()
      */
-    public static String getCharacterEncoding()
-    {
+    public static String getCharacterEncoding() {
         RenderResponse renderResponse = getRenderResponse();
-        if (renderResponse == null)
-        {
+        if (renderResponse == null) {
             throw new IllegalStateException(
                     "The response is not RenderResponse.");
         }
         return renderResponse.getCharacterEncoding();
     }
 
-    /* (non-Javadoc)
+    /*
+     * (non-Javadoc)
+     * 
      * @see javax.portlet.RenderResponse#getContentType()
      */
-    public static String getContentType()
-    {
+    public static String getContentType() {
         RenderResponse renderResponse = getRenderResponse();
-        if (renderResponse == null)
-        {
+        if (renderResponse == null) {
             throw new IllegalStateException(
                     "The response is not RenderResponse.");
         }
         return renderResponse.getContentType();
     }
 
-    /* (non-Javadoc)
+    /*
+     * (non-Javadoc)
+     * 
      * @see javax.portlet.RenderResponse#getLocale()
      */
-    public static Locale getLocale()
-    {
+    public static Locale getLocale() {
         RenderResponse renderResponse = getRenderResponse();
-        if (renderResponse == null)
-        {
+        if (renderResponse == null) {
             throw new IllegalStateException(
                     "The response is not RenderResponse.");
         }
         return renderResponse.getLocale();
     }
 
-    /* (non-Javadoc)
+    /*
+     * (non-Javadoc)
+     * 
      * @see javax.portlet.RenderResponse#getNamespace()
      */
-    public static String getNamespace()
-    {
+    public static String getNamespace() {
         RenderResponse renderResponse = getRenderResponse();
-        if (renderResponse == null)
-        {
+        if (renderResponse == null) {
             throw new IllegalStateException(
                     "The response is not RenderResponse.");
         }
         return renderResponse.getNamespace();
     }
 
-    /* (non-Javadoc)
+    /*
+     * (non-Javadoc)
+     * 
      * @see javax.portlet.RenderResponse#getPortletOutputStream()
      */
-    public static OutputStream getPortletOutputStream() throws IOException
-    {
+    public static OutputStream getPortletOutputStream() throws IOException {
         RenderResponse renderResponse = getRenderResponse();
-        if (renderResponse == null)
-        {
+        if (renderResponse == null) {
             throw new IllegalStateException(
                     "The response is not RenderResponse.");
         }
         return renderResponse.getPortletOutputStream();
     }
 
-    /* (non-Javadoc)
+    /*
+     * (non-Javadoc)
+     * 
      * @see javax.portlet.RenderResponse#getWriter()
      */
-    public static PrintWriter getWriter() throws IOException
-    {
+    public static PrintWriter getWriter() throws IOException {
         RenderResponse renderResponse = getRenderResponse();
-        if (renderResponse == null)
-        {
+        if (renderResponse == null) {
             throw new IllegalStateException(
                     "The response is not RenderResponse.");
         }
         return renderResponse.getWriter();
     }
 
-    /* (non-Javadoc)
+    /*
+     * (non-Javadoc)
+     * 
      * @see javax.portlet.RenderResponse#isCommitted()
      */
-    public static boolean isCommitted()
-    {
+    public static boolean isCommitted() {
         RenderResponse renderResponse = getRenderResponse();
-        if (renderResponse == null)
-        {
+        if (renderResponse == null) {
             throw new IllegalStateException(
                     "The response is not RenderResponse.");
         }
         return renderResponse.isCommitted();
     }
 
-    /* (non-Javadoc)
+    /*
+     * (non-Javadoc)
+     * 
      * @see javax.portlet.RenderResponse#reset()
      */
-    public static void reset()
-    {
+    public static void reset() {
         RenderResponse renderResponse = getRenderResponse();
-        if (renderResponse == null)
-        {
+        if (renderResponse == null) {
             throw new IllegalStateException(
                     "The response is not RenderResponse.");
         }
         renderResponse.reset();
     }
 
-    /* (non-Javadoc)
+    /*
+     * (non-Javadoc)
+     * 
      * @see javax.portlet.RenderResponse#resetBuffer()
      */
-    public static void resetBuffer()
-    {
+    public static void resetBuffer() {
         RenderResponse renderResponse = getRenderResponse();
-        if (renderResponse == null)
-        {
+        if (renderResponse == null) {
             throw new IllegalStateException(
                     "The response is not RenderResponse.");
         }
         renderResponse.resetBuffer();
     }
 
-    /* (non-Javadoc)
+    /*
+     * (non-Javadoc)
+     * 
      * @see javax.portlet.RenderResponse#setBufferSize(int)
      */
-    public static void setBufferSize(int arg0)
-    {
+    public static void setBufferSize(int arg0) {
         RenderResponse renderResponse = getRenderResponse();
-        if (renderResponse == null)
-        {
+        if (renderResponse == null) {
             throw new IllegalStateException(
                     "The response is not RenderResponse.");
         }
         renderResponse.setBufferSize(arg0);
     }
 
-    /* (non-Javadoc)
+    /*
+     * (non-Javadoc)
+     * 
      * @see javax.portlet.RenderResponse#setContentType(java.lang.String)
      */
-    public static void setContentType(String arg0)
-    {
+    public static void setContentType(String arg0) {
         RenderResponse renderResponse = getRenderResponse();
-        if (renderResponse == null)
-        {
+        if (renderResponse == null) {
             throw new IllegalStateException(
                     "The response is not RenderResponse.");
         }
@@ -259,14 +255,14 @@ public class RenderResponseUtil extends PortletResponseUtil
 
     }
 
-    /* (non-Javadoc)
+    /*
+     * (non-Javadoc)
+     * 
      * @see javax.portlet.RenderResponse#setTitle(java.lang.String)
      */
-    public static void setTitle(String arg0)
-    {
+    public static void setTitle(String arg0) {
         RenderResponse renderResponse = getRenderResponse();
-        if (renderResponse == null)
-        {
+        if (renderResponse == null) {
             throw new IllegalStateException(
                     "The response is not RenderResponse.");
         }

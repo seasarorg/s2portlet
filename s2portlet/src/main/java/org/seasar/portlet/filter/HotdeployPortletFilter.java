@@ -28,7 +28,7 @@ import org.apache.commons.logging.LogFactory;
 import org.apache.portals.bridges.portletfilter.PortletFilter;
 import org.apache.portals.bridges.portletfilter.PortletFilterChain;
 import org.apache.portals.bridges.portletfilter.PortletFilterConfig;
-import org.seasar.framework.container.hotdeploy.OndemandBehavior;
+import org.seasar.framework.container.hotdeploy.HotdeployBehavior;
 import org.seasar.framework.container.impl.S2ContainerBehavior;
 
 /**
@@ -37,8 +37,7 @@ import org.seasar.framework.container.impl.S2ContainerBehavior;
  * @author <a href="mailto:shinsuke@yahoo.co.jp">Shinsuke Sugaya</a>
  * 
  */
-public class HotdeployPortletFilter implements PortletFilter
-{
+public class HotdeployPortletFilter implements PortletFilter {
     /**
      * Logger for this class
      */
@@ -47,101 +46,75 @@ public class HotdeployPortletFilter implements PortletFilter
 
     private static final String KEY = HotdeployPortletFilter.class.getName();
 
-    public void init(PortletFilterConfig filterConfig) throws PortletException
-    {
-        if (log.isDebugEnabled())
-        {
+    public void init(PortletFilterConfig filterConfig) throws PortletException {
+        if (log.isDebugEnabled()) {
             log.debug("init(PortletFilterConfig)");
         }
     }
 
     public void renderFilter(RenderRequest request, RenderResponse response,
-            PortletFilterChain chain) throws PortletException, IOException
-    {
-        if (log.isDebugEnabled())
-        {
+            PortletFilterChain chain) throws PortletException, IOException {
+        if (log.isDebugEnabled()) {
             log
                     .debug("renderFilter(RenderRequest, RenderResponse, PortletFilterChain)");
         }
 
-        if (request.getAttribute(KEY) == null)
-        {
+        if (request.getAttribute(KEY) == null) {
             S2ContainerBehavior.Provider provider = S2ContainerBehavior
                     .getProvider();
-            if (provider instanceof OndemandBehavior)
-            {
-                request.setAttribute(KEY, Thread.currentThread()
-                        .getContextClassLoader());
-                OndemandBehavior ondemand = (OndemandBehavior) provider;
+            if (provider instanceof HotdeployBehavior) {
+                HotdeployBehavior ondemand = (HotdeployBehavior) provider;
                 ondemand.start();
-                try
-                {
+                try {
+                    request.setAttribute(KEY, Thread.currentThread()
+                            .getContextClassLoader());
                     chain.renderFilter(request, response);
-                }
-                finally
-                {
+                } finally {
                     ondemand.stop();
                 }
-            }
-            else
-            {
+            } else {
                 chain.renderFilter(request, response);
             }
-        }
-        else
-        {
+        } else {
             ClassLoader cl = (ClassLoader) request.getAttribute(KEY);
             Thread.currentThread().setContextClassLoader(cl);
             chain.renderFilter(request, response);
         }
+
     }
 
     public void processActionFilter(ActionRequest request,
             ActionResponse response, PortletFilterChain chain)
-            throws PortletException, IOException
-    {
-        if (log.isDebugEnabled())
-        {
+            throws PortletException, IOException {
+        if (log.isDebugEnabled()) {
             log
                     .debug("processActionFilter(ActionRequest, ActionResponse, PortletFilterChain)");
         }
-
-        if (request.getAttribute(KEY) == null)
-        {
+        if (request.getAttribute(KEY) == null) {
             S2ContainerBehavior.Provider provider = S2ContainerBehavior
                     .getProvider();
-            if (provider instanceof OndemandBehavior)
-            {
-                request.setAttribute(KEY, Thread.currentThread()
-                        .getContextClassLoader());
-                OndemandBehavior ondemand = (OndemandBehavior) provider;
+            if (provider instanceof HotdeployBehavior) {
+                HotdeployBehavior ondemand = (HotdeployBehavior) provider;
                 ondemand.start();
-                try
-                {
+                try {
+                    request.setAttribute(KEY, Thread.currentThread()
+                            .getContextClassLoader());
                     chain.processActionFilter(request, response);
-                }
-                finally
-                {
+                } finally {
                     ondemand.stop();
                 }
-            }
-            else
-            {
+            } else {
                 chain.processActionFilter(request, response);
             }
-        }
-        else
-        {
+        } else {
             ClassLoader cl = (ClassLoader) request.getAttribute(KEY);
             Thread.currentThread().setContextClassLoader(cl);
             chain.processActionFilter(request, response);
         }
     }
 
-    public void destroy()
-    {
-        if (log.isDebugEnabled())
-        {
+    public void destroy() {
+        if (log.isDebugEnabled()) {
             log.debug("destroy()");
         }
     }

@@ -27,16 +27,14 @@ import javax.servlet.ServletOutputStream;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
 
-
 /**
  * This class is a dummy HttpServletResponse.
  * 
  * @author <a href="mailto:shinsuke@yahoo.co.jp">Shinsuke Sugaya</a>
- *
+ * 
  */
 public class HttpServletResponseWrapper implements HttpServletResponse,
-        PortletResponse
-{
+        PortletResponse {
     /**
      * Dummy writer to store elements, such as &lt;script&gt; and &lt;link&gt;.
      */
@@ -46,15 +44,13 @@ public class HttpServletResponseWrapper implements HttpServletResponse,
 
     private RenderResponse renderResponse;
 
-    public HttpServletResponseWrapper(PortletResponse portletResponse)
-    {
+    public HttpServletResponseWrapper(PortletResponse portletResponse) {
         this.renderResponse = null;
         this.portletResponse = portletResponse;
         writer = new StringWriter();
     }
 
-    public HttpServletResponseWrapper(RenderResponse renderResponse)
-    {
+    public HttpServletResponseWrapper(RenderResponse renderResponse) {
         this.renderResponse = renderResponse;
         this.portletResponse = renderResponse;
         writer = new StringWriter();
@@ -65,340 +61,366 @@ public class HttpServletResponseWrapper implements HttpServletResponse,
      * 
      * @see javax.servlet.ServletResponseWrapper#getWriter()
      */
-    public PrintWriter getWriter() throws IOException
-    {
+    public PrintWriter getWriter() throws IOException {
         return new PrintWriter(writer);
     }
 
     /**
      * Returns writer to which MyFaces' AddResource stores elements.
      * 
-     * @return writer which has elements, such as &lt;script&gt; and &lt;link&gt;
+     * @return writer which has elements, such as &lt;script&gt; and
+     *         &lt;link&gt;
      */
-    public StringWriter getStringWriter()
-    {
+    public StringWriter getStringWriter() {
         return (StringWriter) writer;
     }
 
-    /* (non-Javadoc)
+    /*
+     * (non-Javadoc)
+     * 
      * @see javax.servlet.ServletResponse#flushBuffer()
      */
-    public void flushBuffer() throws IOException
-    {
-        if (renderResponse != null)
-        {
+    public void flushBuffer() throws IOException {
+        if (renderResponse != null) {
             renderResponse.flushBuffer();
         }
     }
 
-    /* (non-Javadoc)
+    /*
+     * (non-Javadoc)
+     * 
      * @see javax.servlet.ServletResponse#getBufferSize()
      */
-    public int getBufferSize()
-    {
-        if (renderResponse != null)
-        {
+    public int getBufferSize() {
+        if (renderResponse != null) {
             return renderResponse.getBufferSize();
         }
         return 0;
     }
 
-    /* (non-Javadoc)
+    /*
+     * (non-Javadoc)
+     * 
      * @see javax.servlet.ServletResponse#getCharacterEncoding()
      */
-    public String getCharacterEncoding()
-    {
-        if (renderResponse != null)
-        {
+    public String getCharacterEncoding() {
+        if (renderResponse != null) {
             return renderResponse.getCharacterEncoding();
         }
         return null;
     }
 
-    /* (non-Javadoc)
+    /*
+     * (non-Javadoc)
+     * 
      * @see javax.servlet.ServletResponse#getLocale()
      */
-    public Locale getLocale()
-    {
-        if (renderResponse != null)
-        {
+    public Locale getLocale() {
+        if (renderResponse != null) {
             return renderResponse.getLocale();
         }
         return null;
     }
 
-    /* (non-Javadoc)
+    /*
+     * (non-Javadoc)
+     * 
      * @see javax.servlet.ServletResponse#getOutputStream()
      */
-    public ServletOutputStream getOutputStream() throws IOException
-    {
-        if (renderResponse != null)
-        {
+    public ServletOutputStream getOutputStream() throws IOException {
+        if (renderResponse != null) {
             return new ServletOutputStreamWrapper(renderResponse
                     .getPortletOutputStream());
         }
         return null;
     }
 
-    /* (non-Javadoc)
+    /*
+     * (non-Javadoc)
+     * 
      * @see javax.servlet.ServletResponse#isCommitted()
      */
-    public boolean isCommitted()
-    {
-        if (renderResponse != null)
-        {
+    public boolean isCommitted() {
+        if (renderResponse != null) {
             return renderResponse.isCommitted();
         }
         return false;
     }
 
-    /* (non-Javadoc)
+    /*
+     * (non-Javadoc)
+     * 
      * @see javax.servlet.ServletResponse#reset()
      */
-    public void reset()
-    {
-        if (renderResponse != null)
-        {
+    public void reset() {
+        if (renderResponse != null) {
             renderResponse.reset();
         }
     }
 
-    /* (non-Javadoc)
+    /*
+     * (non-Javadoc)
+     * 
      * @see javax.servlet.ServletResponse#resetBuffer()
      */
-    public void resetBuffer()
-    {
-        if (renderResponse != null)
-        {
+    public void resetBuffer() {
+        if (renderResponse != null) {
             renderResponse.resetBuffer();
         }
 
     }
 
-    /* (non-Javadoc)
+    /*
+     * (non-Javadoc)
+     * 
      * @see javax.servlet.ServletResponse#setBufferSize(int)
      */
-    public void setBufferSize(int arg0)
-    {
+    public void setBufferSize(int arg0) {
         // TODO Portlet API does not have this method
-        if (renderResponse != null)
-        {
+        if (renderResponse != null) {
             renderResponse.setBufferSize(arg0);
         }
 
     }
 
-    /* (non-Javadoc)
+    /*
+     * (non-Javadoc)
+     * 
      * @see javax.servlet.ServletResponse#setContentLength(int)
      */
-    public void setContentLength(int arg0)
-    {
+    public void setContentLength(int arg0) {
         // TODO Portlet API does not have this method
 
     }
 
-    /* (non-Javadoc)
+    /*
+     * (non-Javadoc)
+     * 
      * @see javax.servlet.ServletResponse#setContentType(java.lang.String)
      */
-    public void setContentType(String arg0)
-    {
-        if (renderResponse != null)
-        {
+    public void setContentType(String arg0) {
+        if (renderResponse != null) {
             renderResponse.setContentType(arg0);
         }
     }
 
-    /* (non-Javadoc)
+    /*
+     * (non-Javadoc)
+     * 
      * @see javax.servlet.ServletResponse#setLocale(java.util.Locale)
      */
-    public void setLocale(Locale arg0)
-    {
+    public void setLocale(Locale arg0) {
         // TODO Portlet API does not have this method
 
     }
 
-    /* (non-Javadoc)
+    /*
+     * (non-Javadoc)
+     * 
      * @see javax.servlet.http.HttpServletResponse#addCookie(javax.servlet.http.Cookie)
      */
-    public void addCookie(Cookie arg0)
-    {
+    public void addCookie(Cookie arg0) {
         // TODO Portlet API does not have this method
 
     }
 
-    /* (non-Javadoc)
-     * @see javax.servlet.http.HttpServletResponse#addDateHeader(java.lang.String, long)
+    /*
+     * (non-Javadoc)
+     * 
+     * @see javax.servlet.http.HttpServletResponse#addDateHeader(java.lang.String,
+     *      long)
      */
-    public void addDateHeader(String arg0, long arg1)
-    {
+    public void addDateHeader(String arg0, long arg1) {
         // TODO Portlet API does not have this method
 
     }
 
-    /* (non-Javadoc)
-     * @see javax.servlet.http.HttpServletResponse#addHeader(java.lang.String, java.lang.String)
+    /*
+     * (non-Javadoc)
+     * 
+     * @see javax.servlet.http.HttpServletResponse#addHeader(java.lang.String,
+     *      java.lang.String)
      */
-    public void addHeader(String arg0, String arg1)
-    {
+    public void addHeader(String arg0, String arg1) {
         // TODO Portlet API does not have this method
 
     }
 
-    /* (non-Javadoc)
-     * @see javax.servlet.http.HttpServletResponse#addIntHeader(java.lang.String, int)
+    /*
+     * (non-Javadoc)
+     * 
+     * @see javax.servlet.http.HttpServletResponse#addIntHeader(java.lang.String,
+     *      int)
      */
-    public void addIntHeader(String arg0, int arg1)
-    {
+    public void addIntHeader(String arg0, int arg1) {
         // TODO Portlet API does not have this method
 
     }
 
-    /* (non-Javadoc)
+    /*
+     * (non-Javadoc)
+     * 
      * @see javax.servlet.http.HttpServletResponse#containsHeader(java.lang.String)
      */
-    public boolean containsHeader(String arg0)
-    {
+    public boolean containsHeader(String arg0) {
         // TODO Portlet API does not have this method
         return false;
     }
 
-    /* (non-Javadoc)
+    /*
+     * (non-Javadoc)
+     * 
      * @see javax.servlet.http.HttpServletResponse#encodeRedirectUrl(java.lang.String)
      */
-    public String encodeRedirectUrl(String arg0)
-    {
+    public String encodeRedirectUrl(String arg0) {
         // TODO Portlet API does not have this method
         return null;
     }
 
-    /* (non-Javadoc)
+    /*
+     * (non-Javadoc)
+     * 
      * @see javax.servlet.http.HttpServletResponse#encodeRedirectURL(java.lang.String)
      */
-    public String encodeRedirectURL(String arg0)
-    {
+    public String encodeRedirectURL(String arg0) {
         // TODO Portlet API does not have this method
         return null;
     }
 
-    /* (non-Javadoc)
+    /*
+     * (non-Javadoc)
+     * 
      * @see javax.servlet.http.HttpServletResponse#encodeUrl(java.lang.String)
      */
-    public String encodeUrl(String arg0)
-    {
-        if (renderResponse != null)
-        {
+    public String encodeUrl(String arg0) {
+        if (renderResponse != null) {
             return renderResponse.encodeURL(arg0);
         }
         return null;
     }
 
-    /* (non-Javadoc)
+    /*
+     * (non-Javadoc)
+     * 
      * @see javax.servlet.http.HttpServletResponse#encodeURL(java.lang.String)
      */
-    public String encodeURL(String arg0)
-    {
+    public String encodeURL(String arg0) {
         return portletResponse.encodeURL(arg0);
     }
 
-    /* (non-Javadoc)
-     * @see javax.servlet.http.HttpServletResponse#sendError(int, java.lang.String)
+    /*
+     * (non-Javadoc)
+     * 
+     * @see javax.servlet.http.HttpServletResponse#sendError(int,
+     *      java.lang.String)
      */
-    public void sendError(int arg0, String arg1) throws IOException
-    {
+    public void sendError(int arg0, String arg1) throws IOException {
         // TODO Portlet API does not have this method
 
     }
 
-    /* (non-Javadoc)
+    /*
+     * (non-Javadoc)
+     * 
      * @see javax.servlet.http.HttpServletResponse#sendError(int)
      */
-    public void sendError(int arg0) throws IOException
-    {
+    public void sendError(int arg0) throws IOException {
         // TODO Portlet API does not have this method
 
     }
 
-    /* (non-Javadoc)
+    /*
+     * (non-Javadoc)
+     * 
      * @see javax.servlet.http.HttpServletResponse#sendRedirect(java.lang.String)
      */
-    public void sendRedirect(String arg0) throws IOException
-    {
+    public void sendRedirect(String arg0) throws IOException {
         // TODO Portlet API does not have this method
 
     }
 
-    /* (non-Javadoc)
-     * @see javax.servlet.http.HttpServletResponse#setDateHeader(java.lang.String, long)
+    /*
+     * (non-Javadoc)
+     * 
+     * @see javax.servlet.http.HttpServletResponse#setDateHeader(java.lang.String,
+     *      long)
      */
-    public void setDateHeader(String arg0, long arg1)
-    {
+    public void setDateHeader(String arg0, long arg1) {
         // TODO Portlet API does not have this method
 
     }
 
-    /* (non-Javadoc)
-     * @see javax.servlet.http.HttpServletResponse#setHeader(java.lang.String, java.lang.String)
+    /*
+     * (non-Javadoc)
+     * 
+     * @see javax.servlet.http.HttpServletResponse#setHeader(java.lang.String,
+     *      java.lang.String)
      */
-    public void setHeader(String arg0, String arg1)
-    {
+    public void setHeader(String arg0, String arg1) {
         // TODO Portlet API does not have this method
 
     }
 
-    /* (non-Javadoc)
-     * @see javax.servlet.http.HttpServletResponse#setIntHeader(java.lang.String, int)
+    /*
+     * (non-Javadoc)
+     * 
+     * @see javax.servlet.http.HttpServletResponse#setIntHeader(java.lang.String,
+     *      int)
      */
-    public void setIntHeader(String arg0, int arg1)
-    {
+    public void setIntHeader(String arg0, int arg1) {
         // TODO Portlet API does not have this method
 
     }
 
-    /* (non-Javadoc)
-     * @see javax.servlet.http.HttpServletResponse#setStatus(int, java.lang.String)
+    /*
+     * (non-Javadoc)
+     * 
+     * @see javax.servlet.http.HttpServletResponse#setStatus(int,
+     *      java.lang.String)
      */
-    public void setStatus(int arg0, String arg1)
-    {
+    public void setStatus(int arg0, String arg1) {
         // TODO Portlet API does not have this method
 
     }
 
-    /* (non-Javadoc)
+    /*
+     * (non-Javadoc)
+     * 
      * @see javax.servlet.http.HttpServletResponse#setStatus(int)
      */
-    public void setStatus(int arg0)
-    {
+    public void setStatus(int arg0) {
         // TODO Portlet API does not have this method
 
     }
 
-    /* (non-Javadoc)
-     * @see javax.portlet.PortletResponse#addProperty(java.lang.String, java.lang.String)
+    /*
+     * (non-Javadoc)
+     * 
+     * @see javax.portlet.PortletResponse#addProperty(java.lang.String,
+     *      java.lang.String)
      */
-    public void addProperty(String arg0, String arg1)
-    {
+    public void addProperty(String arg0, String arg1) {
         portletResponse.addProperty(arg0, arg1);
     }
 
-    /* (non-Javadoc)
-     * @see javax.portlet.PortletResponse#setProperty(java.lang.String, java.lang.String)
+    /*
+     * (non-Javadoc)
+     * 
+     * @see javax.portlet.PortletResponse#setProperty(java.lang.String,
+     *      java.lang.String)
      */
-    public void setProperty(String arg0, String arg1)
-    {
+    public void setProperty(String arg0, String arg1) {
         portletResponse.setProperty(arg0, arg1);
     }
 
-    public String getContentType()
-    {
-        if (renderResponse != null)
-        {
+    public String getContentType() {
+        if (renderResponse != null) {
             return renderResponse.getContentType();
         }
         return null;
     }
 
-    public void setCharacterEncoding(String arg0)
-    {
+    public void setCharacterEncoding(String arg0) {
         // TODO Portlet API does not have this method
 
     }

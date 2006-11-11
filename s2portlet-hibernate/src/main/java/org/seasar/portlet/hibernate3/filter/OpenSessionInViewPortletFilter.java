@@ -36,39 +36,40 @@ import org.seasar.framework.container.factory.SingletonS2ContainerFactory;
  * 
  * @author <a href="mailto:shinsuke@yahoo.co.jp">Shinsuke Sugaya</a>
  * 
- */public class OpenSessionInViewPortletFilter implements PortletFilter
-{
+ */
+public class OpenSessionInViewPortletFilter implements PortletFilter {
     /**
      * Logger for this class
      */
     private static final Log log = LogFactory
             .getLog(OpenSessionInViewPortletFilter.class);
 
-    /* (non-Javadoc)
+    /*
+     * (non-Javadoc)
+     * 
      * @see org.apache.portals.bridges.portletfilter.PortletFilter#init(org.apache.portals.bridges.portletfilter.PortletFilterConfig)
      */
-    public void init(PortletFilterConfig filterConfig) throws PortletException
-    {
-        if (log.isDebugEnabled())
-        {
+    public void init(PortletFilterConfig filterConfig) throws PortletException {
+        if (log.isDebugEnabled()) {
             log.debug("init(PortletFilterConfig) - start");
         }
 
-        if (log.isDebugEnabled())
-        {
+        if (log.isDebugEnabled()) {
             log.debug("init(PortletFilterConfig) - end");
         }
     }
 
-    /* (non-Javadoc)
-     * @see org.apache.portals.bridges.portletfilter.PortletFilter#processActionFilter(javax.portlet.ActionRequest, javax.portlet.ActionResponse, org.apache.portals.bridges.portletfilter.PortletFilterChain)
+    /*
+     * (non-Javadoc)
+     * 
+     * @see org.apache.portals.bridges.portletfilter.PortletFilter#processActionFilter(javax.portlet.ActionRequest,
+     *      javax.portlet.ActionResponse,
+     *      org.apache.portals.bridges.portletfilter.PortletFilterChain)
      */
     public void processActionFilter(ActionRequest request,
             ActionResponse response, PortletFilterChain chain)
-            throws PortletException, IOException
-    {
-        if (log.isDebugEnabled())
-        {
+            throws PortletException, IOException {
+        if (log.isDebugEnabled()) {
             log
                     .debug("processActionFilter(ActionRequest, ActionResponse, PortletFilterChain) - start");
         }
@@ -78,21 +79,22 @@ import org.seasar.framework.container.factory.SingletonS2ContainerFactory;
                 .getComponent(PortletFilterChainTx.class);
         chainProxy.processActionFilter(request, response, chain);
 
-        if (log.isDebugEnabled())
-        {
+        if (log.isDebugEnabled()) {
             log
                     .debug("processActionFilter(ActionRequest, ActionResponse, PortletFilterChain) - end");
         }
     }
 
-    /* (non-Javadoc)
-     * @see org.apache.portals.bridges.portletfilter.PortletFilter#renderFilter(javax.portlet.RenderRequest, javax.portlet.RenderResponse, org.apache.portals.bridges.portletfilter.PortletFilterChain)
+    /*
+     * (non-Javadoc)
+     * 
+     * @see org.apache.portals.bridges.portletfilter.PortletFilter#renderFilter(javax.portlet.RenderRequest,
+     *      javax.portlet.RenderResponse,
+     *      org.apache.portals.bridges.portletfilter.PortletFilterChain)
      */
     public void renderFilter(RenderRequest request, RenderResponse response,
-            PortletFilterChain chain) throws PortletException, IOException
-    {
-        if (log.isDebugEnabled())
-        {
+            PortletFilterChain chain) throws PortletException, IOException {
+        if (log.isDebugEnabled()) {
             log
                     .debug("renderFilter(RenderRequest, RenderResponse, PortletFilterChain) - start");
         }
@@ -102,15 +104,13 @@ import org.seasar.framework.container.factory.SingletonS2ContainerFactory;
                 .getComponent(PortletFilterChainTx.class);
         chainProxy.renderFilter(request, response, chain);
 
-        if (log.isDebugEnabled())
-        {
+        if (log.isDebugEnabled()) {
             log
                     .debug("renderFilter(RenderRequest, RenderResponse, PortletFilterChain) - end");
         }
     }
 
-    public void destroy()
-    {
+    public void destroy() {
 
     }
 }
