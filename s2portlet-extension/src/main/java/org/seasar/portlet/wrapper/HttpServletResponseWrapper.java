@@ -17,8 +17,6 @@ package org.seasar.portlet.wrapper;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.io.StringWriter;
-import java.io.Writer;
 import java.util.Locale;
 
 import javax.portlet.PortletResponse;
@@ -28,32 +26,25 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * This class is a dummy HttpServletResponse.
+ * This class is a HttpServletResponse wrapper.
  * 
  * @author <a href="mailto:shinsuke@yahoo.co.jp">Shinsuke Sugaya</a>
  * 
  */
 public class HttpServletResponseWrapper implements HttpServletResponse,
         PortletResponse {
-    /**
-     * Dummy writer to store elements, such as &lt;script&gt; and &lt;link&gt;.
-     */
-    private Writer writer;
 
     private PortletResponse portletResponse;
 
     private RenderResponse renderResponse;
 
     public HttpServletResponseWrapper(PortletResponse portletResponse) {
-        this.renderResponse = null;
+        if (portletResponse instanceof RenderResponse) {
+            this.renderResponse = (RenderResponse) portletResponse;
+        } else {
+            this.renderResponse = null;
+        }
         this.portletResponse = portletResponse;
-        writer = new StringWriter();
-    }
-
-    public HttpServletResponseWrapper(RenderResponse renderResponse) {
-        this.renderResponse = renderResponse;
-        this.portletResponse = renderResponse;
-        writer = new StringWriter();
     }
 
     /*
@@ -62,17 +53,10 @@ public class HttpServletResponseWrapper implements HttpServletResponse,
      * @see javax.servlet.ServletResponseWrapper#getWriter()
      */
     public PrintWriter getWriter() throws IOException {
-        return new PrintWriter(writer);
-    }
-
-    /**
-     * Returns writer to which MyFaces' AddResource stores elements.
-     * 
-     * @return writer which has elements, such as &lt;script&gt; and
-     *         &lt;link&gt;
-     */
-    public StringWriter getStringWriter() {
-        return (StringWriter) writer;
+        if (renderResponse != null) {
+            return renderResponse.getWriter();
+        }
+        return null;
     }
 
     /*

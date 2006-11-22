@@ -1,8 +1,5 @@
 package org.seasar.portlet.wrapper;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
-
 import java.io.InputStream;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -16,11 +13,6 @@ import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 
 public class ServletContextWrapper implements ServletContext {
-    /**
-     * Logger for this class
-     */
-    private static final Log log = LogFactory
-            .getLog(ServletContextWrapper.class);
 
     private PortletContext portletContext;
 

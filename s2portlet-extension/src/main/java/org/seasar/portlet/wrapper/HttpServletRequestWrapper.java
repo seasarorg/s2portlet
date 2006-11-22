@@ -53,15 +53,12 @@ public class HttpServletRequestWrapper implements HttpServletRequest,
 
     public HttpServletRequestWrapper(PortletRequest portletRequest,
             PortletContext portletContext) {
-        this.actionRequest = null;
+        if (portletRequest instanceof ActionRequest) {
+            this.actionRequest = (ActionRequest) portletRequest;
+        } else {
+            this.actionRequest = null;
+        }
         this.portletRequest = portletRequest;
-        this.portletContext = portletContext;
-    }
-
-    public HttpServletRequestWrapper(ActionRequest actionRequest,
-            PortletContext portletContext) {
-        this.actionRequest = actionRequest;
-        this.portletRequest = actionRequest;
         this.portletContext = portletContext;
     }
 
@@ -459,8 +456,7 @@ public class HttpServletRequestWrapper implements HttpServletRequest,
      * @see javax.servlet.ServletRequest#getRealPath(java.lang.String)
      */
     public String getRealPath(String arg0) {
-        // TODO Portlet API does not have this method
-        return null;
+        return portletContext.getRealPath(arg0);
     }
 
     /*
