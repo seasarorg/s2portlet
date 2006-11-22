@@ -6,7 +6,7 @@
     <artifactId>s2-portlet-hibernate</artifactId>
     <packaging>jar</packaging>
     <version>1.0.6</version>
-    <name>S2Portlet jar file</name>
+    <name>S2Portlet Hibernate JAR File</name>
     <url>http://s2portlet.sandbox.seasar.org/</url>
     <repositories>
         <repository>
