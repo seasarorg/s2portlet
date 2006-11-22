@@ -5,7 +5,7 @@
     <groupId>org.seasar.portlet</groupId>
     <artifactId>s2-portlet</artifactId>
     <packaging>jar</packaging>
-    <version>1.0.6</version>
+    <version>1.0.7-SNAPSHOT</version>
     <name>S2Portlet Core JAR File</name>
     <url>http://s2portlet.sandbox.seasar.org/</url>
     <repositories>
@@ -66,4 +66,18 @@
             <scope>test</scope>
         </dependency>
     </dependencies>
+    <distributionManagement>
+        <repository>
+            <uniqueVersion>false</uniqueVersion>
+            <id>maven.seasar.org</id>
+            <name>The Seasar Foundation Maven2 Repository</name>
+            <url>scp://www.seasar.org/home/groups/sandbox/s2portlet/maven/maven2</url>
+        </repository>
+        <snapshotRepository>
+            <uniqueVersion>false</uniqueVersion>
+            <id>maven.seasar.org</id>
+            <name>The Seasar Foundation Maven2 Repository</name>
+            <url>scp://www.seasar.org/home/groups/sandbox/s2portlet/maven/maven2</url>
+        </snapshotRepository>
+    </distributionManagement>
 </project>
