@@ -18,8 +18,6 @@ package org.seasar.portlet.util;
 import javax.portlet.PortletConfig;
 import javax.portlet.PortletContext;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.seasar.framework.container.S2Container;
 import org.seasar.framework.container.external.portlet.PortletExternalContext;
 import org.seasar.framework.container.factory.SingletonS2ContainerFactory;
@@ -31,10 +29,6 @@ import org.seasar.framework.container.factory.SingletonS2ContainerFactory;
  * 
  */
 public class PortletConfigUtil {
-    /**
-     * Logger for this class
-     */
-    private static final Log log = LogFactory.getLog(PortletConfigUtil.class);
 
     public static PortletConfig getPortletConfig() {
         S2Container container = SingletonS2ContainerFactory.getContainer();

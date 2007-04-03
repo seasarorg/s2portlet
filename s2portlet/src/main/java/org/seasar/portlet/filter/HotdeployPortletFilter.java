@@ -1,5 +1,5 @@
 /*
- * Copyright 2004-2006 the Seasar Foundation and the Others.
+ * Copyright 2004-2007 the Seasar Foundation and the Others.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -23,16 +23,15 @@ import javax.portlet.PortletException;
 import javax.portlet.RenderRequest;
 import javax.portlet.RenderResponse;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.apache.portals.bridges.portletfilter.PortletFilter;
 import org.apache.portals.bridges.portletfilter.PortletFilterChain;
 import org.apache.portals.bridges.portletfilter.PortletFilterConfig;
 import org.seasar.framework.container.hotdeploy.HotdeployBehavior;
 import org.seasar.framework.container.impl.S2ContainerBehavior;
+import org.seasar.framework.log.Logger;
 
 /**
- * This is a PortletFilter implementation for Seasar2.
+ * This is a HOT deploy implementation for Portlet.
  * 
  * @author <a href="mailto:shinsuke@yahoo.co.jp">Shinsuke Sugaya</a>
  * 
@@ -41,36 +40,39 @@ public class HotdeployPortletFilter implements PortletFilter {
     /**
      * Logger for this class
      */
-    private static final Log log = LogFactory
-            .getLog(HotdeployPortletFilter.class);
+    private static final Logger logger = Logger
+            .getLogger(HotdeployPortletFilter.class);
 
     private static final String KEY = HotdeployPortletFilter.class.getName();
 
     public void init(PortletFilterConfig filterConfig) throws PortletException {
-        if (log.isDebugEnabled()) {
-            log.debug("init(PortletFilterConfig)");
+        if (logger.isDebugEnabled()) {
+            logger
+                    .debug("calling HotdeployPortletFilter#init(PortletFilterConfig).");
         }
     }
 
     public void renderFilter(RenderRequest request, RenderResponse response,
             PortletFilterChain chain) throws PortletException, IOException {
-        if (log.isDebugEnabled()) {
-            log
-                    .debug("renderFilter(RenderRequest, RenderResponse, PortletFilterChain)");
+        if (logger.isDebugEnabled()) {
+            logger
+                    .debug("calling HotdeployPortletFilter#renderFilter(RenderRequest, RenderResponse, PortletFilterChain).");
         }
 
         if (request.getAttribute(KEY) == null) {
             S2ContainerBehavior.Provider provider = S2ContainerBehavior
                     .getProvider();
             if (provider instanceof HotdeployBehavior) {
-                HotdeployBehavior ondemand = (HotdeployBehavior) provider;
-                ondemand.start();
-                try {
-                    request.setAttribute(KEY, Thread.currentThread()
-                            .getContextClassLoader());
-                    chain.renderFilter(request, response);
-                } finally {
-                    ondemand.stop();
+                synchronized (HotdeployPortletFilter.class) {
+                    HotdeployBehavior ondemand = (HotdeployBehavior) provider;
+                    ondemand.start();
+                    try {
+                        request.setAttribute(KEY, Thread.currentThread()
+                                .getContextClassLoader());
+                        chain.renderFilter(request, response);
+                    } finally {
+                        ondemand.stop();
+                    }
                 }
             } else {
                 chain.renderFilter(request, response);
@@ -86,22 +88,25 @@ public class HotdeployPortletFilter implements PortletFilter {
     public void processActionFilter(ActionRequest request,
             ActionResponse response, PortletFilterChain chain)
             throws PortletException, IOException {
-        if (log.isDebugEnabled()) {
-            log
-                    .debug("processActionFilter(ActionRequest, ActionResponse, PortletFilterChain)");
+        if (logger.isDebugEnabled()) {
+            logger
+                    .debug("calling HotdeployPortletFilter#processActionFilter(ActionRequest, ActionResponse, PortletFilterChain).");
         }
+
         if (request.getAttribute(KEY) == null) {
             S2ContainerBehavior.Provider provider = S2ContainerBehavior
                     .getProvider();
             if (provider instanceof HotdeployBehavior) {
-                HotdeployBehavior ondemand = (HotdeployBehavior) provider;
-                ondemand.start();
-                try {
-                    request.setAttribute(KEY, Thread.currentThread()
-                            .getContextClassLoader());
-                    chain.processActionFilter(request, response);
-                } finally {
-                    ondemand.stop();
+                synchronized (HotdeployPortletFilter.class) {
+                    HotdeployBehavior ondemand = (HotdeployBehavior) provider;
+                    ondemand.start();
+                    try {
+                        request.setAttribute(KEY, Thread.currentThread()
+                                .getContextClassLoader());
+                        chain.processActionFilter(request, response);
+                    } finally {
+                        ondemand.stop();
+                    }
                 }
             } else {
                 chain.processActionFilter(request, response);
@@ -114,8 +119,8 @@ public class HotdeployPortletFilter implements PortletFilter {
     }
 
     public void destroy() {
-        if (log.isDebugEnabled()) {
-            log.debug("destroy()");
+        if (logger.isDebugEnabled()) {
+            logger.debug("calling HotdeployPortletFilter#destroy().");
         }
     }
 

@@ -30,14 +30,13 @@ import javax.portlet.PortletException;
 import javax.portlet.RenderRequest;
 import javax.portlet.RenderResponse;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.seasar.framework.container.ExternalContext;
 import org.seasar.framework.container.S2Container;
 import org.seasar.framework.container.external.portlet.PortletExternalContext;
 import org.seasar.framework.container.factory.SingletonS2ContainerFactory;
 import org.seasar.framework.container.servlet.PortletExtendedSingletonS2ContainerInitializer;
 import org.seasar.framework.exception.EmptyRuntimeException;
+import org.seasar.framework.log.Logger;
 
 /**
  * This is a Portlet implementation for Seasar2 environment. S2GenericPortlet
@@ -50,7 +49,8 @@ public class S2GenericPortlet implements Portlet, PortletConfig {
     /**
      * Logger for this class
      */
-    private static final Log log = LogFactory.getLog(S2GenericPortlet.class);
+    private static final Logger logger = Logger
+            .getLogger(S2GenericPortlet.class);
 
     public static final String CONFIG_PATH_KEY = "configPath";
 
@@ -69,7 +69,7 @@ public class S2GenericPortlet implements Portlet, PortletConfig {
         try {
             getGenericPortlet().destroy();
         } catch (PortletException e) {
-            log.error(e);
+            logger.error(e);
         }
         // do not destroy S2Container because S2Container is shared.
         // SingletonS2ContainerFactory.destroy();
@@ -185,7 +185,7 @@ public class S2GenericPortlet implements Portlet, PortletConfig {
         try {
             return getGenericPortlet().getInitParameter(str);
         } catch (PortletException e) {
-            log.warn(e);
+            logger.warn(e);
             return config.getInitParameter(str);
         }
     }
@@ -199,7 +199,7 @@ public class S2GenericPortlet implements Portlet, PortletConfig {
         try {
             return getGenericPortlet().getInitParameterNames();
         } catch (PortletException e) {
-            log.warn(e);
+            logger.warn(e);
             return config.getInitParameterNames();
         }
     }
@@ -213,7 +213,7 @@ public class S2GenericPortlet implements Portlet, PortletConfig {
         try {
             return getGenericPortlet().getPortletContext();
         } catch (PortletException e) {
-            log.warn(e);
+            logger.warn(e);
             return config.getPortletContext();
         }
     }
@@ -227,7 +227,7 @@ public class S2GenericPortlet implements Portlet, PortletConfig {
         try {
             return getGenericPortlet().getPortletName();
         } catch (PortletException e) {
-            log.warn(e);
+            logger.warn(e);
             return config.getPortletName();
         }
     }
@@ -241,7 +241,7 @@ public class S2GenericPortlet implements Portlet, PortletConfig {
         try {
             return getGenericPortlet().getResourceBundle(locale);
         } catch (PortletException e) {
-            log.warn(e);
+            logger.warn(e);
             return config.getResourceBundle(locale);
         }
     }

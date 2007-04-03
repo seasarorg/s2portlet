@@ -20,9 +20,6 @@ import java.util.Enumeration;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
-
 /**
  * This class is a utility class to use a resource bundle defined by portlet.xml
  * on Seasar2 environment.
@@ -31,11 +28,6 @@ import org.apache.commons.logging.LogFactory;
  * 
  */
 public class PortletResourceBundleUtil {
-    /**
-     * Logger for this class
-     */
-    private static final Log log = LogFactory
-            .getLog(PortletResourceBundleUtil.class);
 
     public static ResourceBundle getBundle(Locale locale) {
         return PortletConfigUtil.getResourceBundle(locale);

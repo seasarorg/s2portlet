@@ -24,8 +24,6 @@ import javax.portlet.PortletException;
 import javax.portlet.RenderRequest;
 import javax.portlet.RenderResponse;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.apache.portals.bridges.portletfilter.PortletFilter;
 import org.apache.portals.bridges.portletfilter.PortletFilterChain;
 import org.apache.portals.bridges.portletfilter.PortletFilterConfig;
@@ -35,6 +33,7 @@ import org.seasar.framework.container.external.portlet.PortletExternalContext;
 import org.seasar.framework.container.factory.SingletonS2ContainerFactory;
 import org.seasar.framework.container.servlet.PortletExtendedSingletonS2ContainerInitializer;
 import org.seasar.framework.exception.EmptyRuntimeException;
+import org.seasar.framework.log.Logger;
 
 /**
  * This is a PortletFilter implementation for Seasar2.
@@ -46,15 +45,16 @@ public class S2PortletFilter implements PortletFilter {
     /**
      * Logger for this class
      */
-    private static final Log log = LogFactory.getLog(S2PortletFilter.class);
+    private static final Logger logger = Logger
+            .getLogger(S2PortletFilter.class);
 
     public static final String CONFIG_PATH_KEY = "configPath";
 
     private PortletConfig portletConfig = null;
 
     public void init(PortletFilterConfig filterConfig) throws PortletException {
-        if (log.isDebugEnabled()) {
-            log.debug("init(PortletFilterConfig) - start");
+        if (logger.isDebugEnabled()) {
+            logger.debug("calling S2PortletFilter#init(PortletFilterConfig).");
         }
 
         portletConfig = filterConfig.getPortletConfig();
@@ -73,8 +73,8 @@ public class S2PortletFilter implements PortletFilter {
             }
         }
 
-        if (log.isDebugEnabled()) {
-            log.debug("init(PortletFilterConfig) - end");
+        if (logger.isDebugEnabled()) {
+            logger.debug("finished S2PortletFilter#init(PortletFilterConfig).");
         }
     }
 
@@ -88,6 +88,11 @@ public class S2PortletFilter implements PortletFilter {
 
     public void renderFilter(RenderRequest request, RenderResponse response,
             PortletFilterChain chain) throws PortletException, IOException {
+        if (logger.isDebugEnabled()) {
+            logger
+                    .debug("calling S2PortletFilter#renderFilter(RenderRequest, RenderResponse, PortletFilterChain).");
+        }
+
         S2Container container = SingletonS2ContainerFactory.getContainer();
         ExternalContext externalContext = container.getExternalContext();
         if (externalContext == null) {
@@ -113,6 +118,11 @@ public class S2PortletFilter implements PortletFilter {
     public void processActionFilter(ActionRequest request,
             ActionResponse response, PortletFilterChain chain)
             throws PortletException, IOException {
+        if (logger.isDebugEnabled()) {
+            logger
+                    .debug("calling S2PortletFilter#processActionFilter(ActionRequest, ActionResponse, PortletFilterChain).");
+        }
+
         S2Container container = SingletonS2ContainerFactory.getContainer();
         ExternalContext externalContext = container.getExternalContext();
         if (externalContext == null) {
@@ -139,6 +149,10 @@ public class S2PortletFilter implements PortletFilter {
     public void destroy() {
         // do not destroy S2Container because S2Container is shared.
         // SingletonS2ContainerFactory.destroy();
+        if (logger.isDebugEnabled()) {
+            logger.debug("calling S2PortletFilter#destroy().");
+        }
+
     }
 
 }
