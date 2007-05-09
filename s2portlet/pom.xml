@@ -8,6 +8,14 @@
     <version>1.0.7</version>
     <name>S2Portlet Core JAR File</name>
     <url>http://s2portlet.sandbox.seasar.org/</url>
+    <build>
+        <extensions>
+            <extension>
+                <groupId>org.apache.maven.wagon</groupId>
+                <artifactId>wagon-webdav</artifactId>
+            </extension>
+        </extensions>
+    </build>
     <repositories>
         <repository>
             <id>maven.seasar.org</id>
@@ -73,13 +81,13 @@
             <uniqueVersion>false</uniqueVersion>
             <id>maven.seasar.org</id>
             <name>The Seasar Foundation Maven2 Repository</name>
-            <url>scp://www.seasar.org/home/groups/sandbox/s2portlet/maven/maven2</url>
+            <url>dav:https://www.seasar.org/maven/maven2</url>
         </repository>
         <snapshotRepository>
-            <uniqueVersion>false</uniqueVersion>
+            <uniqueVersion>true</uniqueVersion>
             <id>maven.seasar.org</id>
-            <name>The Seasar Foundation Maven2 Repository</name>
-            <url>scp://www.seasar.org/home/groups/sandbox/s2portlet/maven/maven2</url>
+            <name>The Seasar Foundation Maven2 Snapshot Repository</name>
+            <url>dav:https://www.seasar.org/maven/maven2-snapshot</url>
         </snapshotRepository>
     </distributionManagement>
 </project>
