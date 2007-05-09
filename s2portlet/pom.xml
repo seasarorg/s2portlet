@@ -5,7 +5,7 @@
     <groupId>org.seasar.portlet</groupId>
     <artifactId>s2-portlet</artifactId>
     <packaging>jar</packaging>
-    <version>1.0.7</version>
+    <version>1.0.8-SNAPSHOT</version>
     <name>S2Portlet Core JAR File</name>
     <url>http://s2portlet.sandbox.seasar.org/</url>
     <build>
