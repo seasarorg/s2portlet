@@ -9,7 +9,7 @@
     <name>S2Portlet</name>
     <version>1.0.8-SNAPSHOT</version>
     <description>Utility to use Seasar2 on a portlet environment</description>
-    <url>http://s2portlet.sandbox.seasar.org/</url>
+    <url>http://s2portlet.seasar.org/</url>
     <issueManagement>
         <system>sourceforge.jp</system>
         <url><![CDATA[https://www.seasar.org/issues/browse/PORTLET]]></url>
@@ -70,12 +70,12 @@
     </licenses>
     <scm>
         <connection>
-            scm:svn:https://www.seasar.org/svn/sandbox/s2portlet/trunk/s2portlet/
+            scm:svn:https://www.seasar.org/svn/s2portlet/trunk/s2portlet/
         </connection>
         <developerConnection>
-            scm:svn:https://www.seasar.org/svn/sandbox/s2portlet/trunk/s2portlet/
+            scm:svn:https://www.seasar.org/svn/s2portlet/trunk/s2portlet/
         </developerConnection>
-        <url>http://www.seasar.org/websvn/listing.php?repname=sandbox.s2portlet</url>
+        <url>http://svn.seasar.org/browse/?root=s2portlet</url>
     </scm>
     <organization>
         <name>The Seasar Foundation</name>
